@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+   user = this.auth.currentUser;
 
-  constructor() { }
+  constructor(private auth:Auth) {
+   }
 
   ngOnInit() {
+    console.log(this.user)
   }
-
+  
 }
