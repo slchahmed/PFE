@@ -13,6 +13,8 @@ export interface projet{
   equipe:string[];
   status?:string;
   Equipe?:string;
+  Tache?:string;
+  taches?:string[];
 }
 @Injectable({
   providedIn: 'root'

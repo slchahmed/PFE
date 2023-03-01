@@ -84,10 +84,30 @@
 
                 <!-- sujet col  -->
               <ion-col>
-                <ion-textarea required minlength="15" ngModel name="sujet" #sujet="ngModel"  placeholder="Les information donnes ici et tres important pour lequipe et pour le chefe lui meme" [clearOnEdit]="true" rows="10" spellcheck="true">
-                  <ion-note  *ngIf="!sujet.touched&&!sujet.valid">Les information donnes ici et tres important pour lequipe et pour le chefe lui meme</ion-note>
+                <ion-row>
+                  <ion-col>
+                    <ion-textarea required minlength="15" ngModel name="sujet" #sujet="ngModel"  placeholder="Les information donnes ici et tres important pour lequipe et pour le chefe lui meme" [clearOnEdit]="true" rows="10" spellcheck="true">
+                      <ion-note  *ngIf="!sujet.touched&&!sujet.valid">Les information donnes ici et tres important pour lequipe et pour le chefe lui meme</ion-note>
+                    </ion-textarea>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                     <ion-list>
+                      <ion-item *ngFor="let newtache of taches"><ion-icon name="checkmark-done-circle-outline"></ion-icon>{{newtache}}</ion-item>
+                     </ion-list>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label position="floating">Tache</ion-label>
+                      <ion-input [(ngModel)]="newtache" name="Tache"  type="text" minlenght="5"></ion-input>
+                    </ion-item>
+                    <ion-button (click)="addtache()">ajouter tache</ion-button>
+                  </ion-col>
+                </ion-row>
 
-                </ion-textarea>
               </ion-col>
             </ion-row>
           </ion-grid>
