@@ -25,7 +25,19 @@
                <ion-label position=""> comfirm password</ion-label>
                <ion-input  type="password" name="passconf"  required minlength="8"></ion-input>
              </ion-item>
-             <ion-button type="submit" >Connection</ion-button>
+             <ion-item fill="solid">
+               <ion-label position=""> nom</ion-label>
+               <ion-input ngModel type="password" name="nom" #nom="ngModel" required minlength="8"></ion-input>
+             </ion-item>
+             <ion-item fill="solid">
+               <ion-label position="">phone_number</ion-label>
+               <ion-input ngModel type="text" name="phone" #phone="ngModel"  required minlength="8"></ion-input>
+             </ion-item>
+             <ion-item fill="solid">
+               <ion-label position="">age</ion-label>
+               <ion-input ngModel #age="ngModel" type="number" name="age"  required minlength="8"></ion-input>
+             </ion-item>
+             <ion-button type="submit" (click)="adduser({nom:f.value.nom,phone_number:f.value.phone,email:f.value.email,age:f.value.age})">Connection</ion-button>
            </form>
            </ion-card-content>
        </ion-card>

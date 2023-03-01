@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
-import { AuthService } from '../dashboard/auth.service';
+import { AuthService, user } from '../dashboard/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -31,6 +31,10 @@ export class SignupPage implements OnInit {
       buttons:['ok'],
     })
     await alert.present();
+  }
+
+  adduser(user:user){
+    this.authservice.adduser(user)
   }
 
   ngOnInit() {
