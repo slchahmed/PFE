@@ -1,19 +1,22 @@
 // list a gauche 
 .listgauche {
-    margin-right: 40px;
+    margin-left: 20px;
     margin-top: 20px;
     border-radius: 10px;
-    width: 300px;
-    // border-color: white;
+    width: 300px; 
     box-shadow: 5px 5px  15px #ddd;
 }
 ion-card {
     box-shadow:-3px -3px 20px #ddd ;
     border-radius: 15px;
+    height :140px;
+    width: 90%;
+    font-weight: 15px;
+    padding: 0px;
 }
 // scrolling list 
 .overflow {
-    margin-top: 20px;
+    // margin-top: 10px;
     width: 100%;
     height:300px;
     overflow-x: auto;
