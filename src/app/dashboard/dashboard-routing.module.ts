@@ -7,7 +7,16 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardPage
-  }
+  },
+  {
+    path: 'add',
+    loadChildren: () => import('./add/add.module').then( m => m.AddPageModule)
+  },
+  {
+    path: 'projet-info',
+    loadChildren: () => import('./projet-info/projet-info.module').then( m => m.ProjetInfoPageModule)
+  },
+
 ];
 
 @NgModule({

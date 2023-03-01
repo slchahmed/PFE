@@ -1,0 +1,32 @@
+
+
+<ion-content>
+ <ion-grid>
+  <ion-row>
+    <ion-col size="4" offset="4">
+      <ion-card>
+        <ion-card-header class="ion-text-center">
+          <ion-card-title class="title">Connection</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content class="ion-text-center  ion-padding">
+          <form ngForm #f="ngForm" (ngSubmit)="login({email:f.value.email,password:f.value.pass})">
+            <ion-item fill="solid">
+              <ion-label position="">Email</ion-label>
+              <ion-input ngModel type="text" name="email" #email="ngModel" required></ion-input>
+            </ion-item>
+            <ion-note *ngIf="email.invalid&&email.touched">email rquired</ion-note>
+            <ion-item fill="solid">
+              <ion-label position="">password</ion-label>
+              <ion-input ngModel type="password" name="pass" #pass="ngModel" required minlength="8"></ion-input>
+            </ion-item>
+            <ion-note *ngIf="pass.invalid&&pass.touched"></ion-note>
+            <ion-button type="submit" [disabled]="!f.valid">Connection</ion-button>
+          </form>
+          <ion-note >ne pas de compte ? <a style="color:blue;" [routerLink]="['../signup']"> s'inscrire</a></ion-note>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+ </ion-grid>
+</ion-content>
