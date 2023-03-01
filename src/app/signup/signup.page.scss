@@ -1,13 +1,29 @@
+// ion-card{
+//     margin-top:100px;
+//     width: 110%;
+// }
+
+// ion-card *{
+//     margin: 5px;
+//     font-size: 15px;
+// }
+
+// ion-button{
+//     margin-top: 40px;
+// }
 ion-card{
     margin-top:100px;
-    width: 110%;
+    width: 100%;
+    justify-content: space-between;
+    border-radius: 15px;
+    background-color: transparent;
+    border: 1px solid #0c2a5e;
 }
-
+ion-input {
+    background-color:transparent;
+    border-radius: 6px;
+}
 ion-card *{
-    margin: 5px;
+    margin: 10px;
     font-size: 15px;
-}
-
-ion-button{
-    margin-top: 40px;
 }
