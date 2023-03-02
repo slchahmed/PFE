@@ -89,11 +89,10 @@
         <div class="listgauche">
         <ion-list>
             <ion-item>listitem</ion-item>
-              <ion-item>listitem</ion-item>
-              <ion-item>listitem</ion-item>
-              <ion-item>listitem</ion-item>
-              <ion-item>listitem</ion-item>
-              <ion-item>listitem</ion-item>
+              <ion-item><ion-label>Il n'a pas encore commencé</ion-label><ion-badge style="background-color: gray;">.</ion-badge></ion-item>
+              <ion-item><ion-label>En cours</ion-label><ion-badge style="background-color: yellow;">.</ion-badge></ion-item>
+              <ion-item><ion-label>Terminet</ion-label><ion-badge style="background-color: green;">.</ion-badge></ion-item>
+             
             </ion-list>
         </div>
       </ion-col>
@@ -105,32 +104,24 @@
         <div class="overflow">
           <h2> taches</h2>
           <ion-list>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
-            <ion-item>listitem</ion-item>
+          
+              <ion-grid>
+                
+                  <ion-row>
+                    <ion-col>Titre</ion-col>
+                    <ion-col>Date-debut</ion-col>
+                    <ion-col>Date-fin</ion-col>
+                    <ion-col>status</ion-col>
+                  </ion-row>
+                
+                <ion-row *ngFor="let projet of projets">
+                  <ion-col>{{projet.Titre}}</ion-col>
+                  <ion-col>{{projet.date_debut}}</ion-col>
+                  <ion-col>{{projet.date_fin}}</ion-col>
+                  <ion-col><ion-badge [style.background-color]="projet.badgeColor">.</ion-badge>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
           </ion-list> 
         </div>
       </ion-col>

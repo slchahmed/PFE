@@ -8,10 +8,11 @@ export interface projet{
   Titre:string;
   sujet:string;
   chef?:string;
-  date_debut:number;
-  date_fin:number;
+  date_debut:any;
+  date_fin:any;
   equipe:string[];
   status?:string;
+  badgeColor?:string;
   Equipe?:string;
   Tache?:string;
   taches?:string[];
