@@ -47,23 +47,23 @@ export class DashboardPage implements OnInit {
 
         if (elapsed <= 0) {
           projet.status = 'Not started';
-          projet.badgeColor = 'gray';
+          projet.badgeColor = 'hsl(58,100%,54%)';
           this.T=this.T+1
-        } else if (progress >= 0.6) {
-          projet.status = 'Completed';
-          projet.badgeColor = 'green';
+        } else if (progress >= 1 && projet.status !== 'Completed') {
+          projet.status = 'behind schedule';
+          projet.badgeColor = '#ff0404';
           this.F=this.F+1
           this.T=this.T+1
 
-        } else if (progress >= 0.4) {
+        } else if (progress <= 0.6 ) {
           projet.status = 'In progress';
-          projet.badgeColor = 'yellow';
+          projet.badgeColor = '#34b74a';
           this.F=this.G+1
           this.T=this.T+1
 
-        } else {
-          projet.status = 'Behind schedule';
-          projet.badgeColor = 'yellow';
+        } else if(projet.status == 'Completed'){
+          projet.status = 'Completed';
+          projet.badgeColor = '#55ad48';
           this.G=this.G+1
           this.T=this.T+1
 
@@ -79,4 +79,8 @@ export class DashboardPage implements OnInit {
     this.serviceprojects.deleteprojet(projet)
  }
   
+ cheked(projet:projet){
+   projet.status='Completed'
+   this.serviceprojects.updateprojet(projet)
+ }
 }

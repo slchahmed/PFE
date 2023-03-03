@@ -42,7 +42,7 @@ export class ProjetService {
 
   updateprojet(projet:projet|null){
     const projetref = doc(this.firestore,`projets/${projet?.id}`);
-    return updateDoc(projetref,{Titre:projet?.Titre,sujet:projet?.sujet,chef:projet?.chef,dat_debut:projet?.date_debut,date_fin:projet?.date_fin,equipe:projet?.equipe})
+    return updateDoc(projetref,{Titre:projet?.Titre,sujet:projet?.sujet,chef:projet?.chef,date_debut:projet?.date_debut,date_fin:projet?.date_fin,equipe:projet?.equipe,status:projet?.status,taches:projet?.taches})
   }
   getprojetById(id:string){
     const projetref = doc(this.firestore,`projets/${id}`);
