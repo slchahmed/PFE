@@ -59,17 +59,14 @@ export class AddPage implements OnInit {
           if (elapsed <= 0) {
             projet.status = 'Not started';
             
-          } else if (progress >= 0.6) {
-            projet.status = 'Completed';
-            
-           } 
-          else if (progress >= 0.4) {
-            projet.status = 'In progress';
-           
-          } else {
+          } else if (progress >= 1) {
             projet.status = 'Behind schedule';
             
-          }
+           } 
+          else if (progress <= 0.6) {
+            projet.status = 'In progress';
+           
+          } 
         
        
 
