@@ -1,6 +1,6 @@
 
 
-<ion-content color="secondary">
+<ion-content color="">
 <ion-grid color="primary">
   <ion-row>
     <ion-col size="4" offset="4">
@@ -11,14 +11,14 @@
       
         <ion-card-content class="ion-text-center  ion-padding">
           <form ngForm #f="ngForm" (ngSubmit)="login({email:f.value.email,password:f.value.pass})">
-            <ion-item fill="solid">
-              <ion-icon name="mail-outline" size="large"></ion-icon>
+            <ion-item >
+              <ion-icon name="mail-outline" color="primary"></ion-icon>
               <ion-label position="">Email</ion-label>
               <ion-input ngModel type="text" name="email" #email="ngModel" required></ion-input>
             </ion-item>
             <ion-note *ngIf="email.invalid&&email.touched">email rquired</ion-note>
-            <ion-item fill="solid">
-              <ion-icon name="bag-outline" size="large"></ion-icon>
+            <ion-item 1>
+              <ion-icon name="bag-outline" color="primary"></ion-icon>
               <ion-label position="">password</ion-label>
               <ion-input ngModel type="password" name="pass" #pass="ngModel" required minlength="8"></ion-input>
             </ion-item>

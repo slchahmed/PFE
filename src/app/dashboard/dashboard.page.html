@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content color="moud">
   <ion-grid class="body">
     <ion-row>
       <!-- cards columns -->
@@ -23,21 +23,16 @@
               </ion-card>              
             </ion-col>
             <ion-col>
-              <!-- projet terminer card  -->
-              <ion-card>
+              <!-- projet en cours card  -->
+              <ion-card class="projet-cour">
                 <ion-row>
                   <ion-col>
                     <ion-card-header >
-                      <ion-card-title></ion-card-title>
-                      <ion-card-subtitle></ion-card-subtitle>
+                      <ion-card-title>Projet en cours</ion-card-title>
                     </ion-card-header>
                     <ion-card-content>
-                      Projet en cours
+                      <div class="avatar"><div class="jhon">{{G}}</div></div>
                     </ion-card-content>
-                  </ion-col>
-                  <ion-col>
-                      <ion-avatar class="avatar">{{G}}</ion-avatar>
-                      
                   </ion-col>
                 </ion-row>  
               </ion-card>             
@@ -45,41 +40,31 @@
           </ion-row> 
           <ion-row>
             <ion-col>
-              <!-- projet non terminer card  -->
-              <ion-card>
+              <!-- total de projet  card  -->
+              <ion-card class="projet-total">
                 <ion-row>
                   <ion-col>
                     <ion-card-header >
-                      <ion-card-title></ion-card-title>
-                      <ion-card-subtitle></ion-card-subtitle>
+                      <ion-card-title>Totaliter de projet</ion-card-title>
                     </ion-card-header>
                     <ion-card-content>
-                      Totaliter de projet
+                      <div class="avatar2"> {{T}}</div>
                     </ion-card-content>
-                  </ion-col>
-                  <ion-col>
-                      <ion-avatar class="avatar"> {{T}}</ion-avatar>
-                     
                   </ion-col>
                 </ion-row>  
               </ion-card>      
               <!-- tach non terminer  -->
             </ion-col>
             <ion-col>
-              <ion-card>
+              <ion-card class="projet-ter">
                 <ion-row>
                   <ion-col>
                     <ion-card-header >
-                      <ion-card-title></ion-card-title>
-                      <ion-card-subtitle></ion-card-subtitle>
+                      <ion-card-title> Projet terminer </ion-card-title>
                     </ion-card-header>
                     <ion-card-content>
-                      Projet terminer 
+                      <div class="avatar3">{{F}}</div>
                     </ion-card-content>
-                  </ion-col>
-                  <ion-col>
-                      <div class="avatar  ion-text-center ">{{F}}</div>
-                      
                   </ion-col>
                 </ion-row>  
               </ion-card>      
@@ -92,9 +77,9 @@
         <div class="listgauche">
         <ion-list>
             <ion-item>listitem</ion-item>
-              <ion-item><ion-label>Il n'a pas encore commencé</ion-label><ion-badge style="background-color: gray;">.</ion-badge></ion-item>
-              <ion-item><ion-label>En cours</ion-label><ion-badge style="background-color: yellow;">.</ion-badge></ion-item>
-              <ion-item><ion-label>Terminet</ion-label><ion-badge style="background-color: green;">.</ion-badge></ion-item>
+              <ion-item><ion-label>Il n'a pas encore commencé</ion-label><ion-badge style="background-color: gray; color: gray;">.</ion-badge></ion-item>
+              <ion-item><ion-label>En cours</ion-label><ion-badge style="background-color: yellow; color: yellow;" >.</ion-badge></ion-item>
+              <ion-item><ion-label>Terminet</ion-label><ion-badge style="background-color: green; color: #247143;" >.</ion-badge></ion-item>
              
             </ion-list>
         </div>
