@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content >
-  <ion-grid>
+  <ion-grid class="body">
     <ion-row>
       <!-- cards columns -->
       <ion-col size-md="6" offset-md="2">
@@ -28,15 +28,16 @@
                 <ion-row>
                   <ion-col>
                     <ion-card-header >
-                      <ion-card-title>projet  </ion-card-title>
-                      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+                      <ion-card-title></ion-card-title>
+                      <ion-card-subtitle></ion-card-subtitle>
                     </ion-card-header>
                     <ion-card-content>
-                      Here's a small text description 
+                      Projet en cours
                     </ion-card-content>
                   </ion-col>
                   <ion-col>
-                      <ion-avatar class="avatar"></ion-avatar>
+                      <ion-avatar class="avatar">{{G}}</ion-avatar>
+                      
                   </ion-col>
                 </ion-row>  
               </ion-card>             
@@ -49,15 +50,16 @@
                 <ion-row>
                   <ion-col>
                     <ion-card-header >
-                      <ion-card-title>projet  </ion-card-title>
-                      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+                      <ion-card-title></ion-card-title>
+                      <ion-card-subtitle></ion-card-subtitle>
                     </ion-card-header>
                     <ion-card-content>
-                      Here's a small text description 
+                      Totaliter de projet
                     </ion-card-content>
                   </ion-col>
                   <ion-col>
-                      <ion-avatar class="avatar"></ion-avatar>
+                      <ion-avatar class="avatar"> {{T}}</ion-avatar>
+                     
                   </ion-col>
                 </ion-row>  
               </ion-card>      
@@ -68,15 +70,16 @@
                 <ion-row>
                   <ion-col>
                     <ion-card-header >
-                      <ion-card-title>projet  </ion-card-title>
-                      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+                      <ion-card-title></ion-card-title>
+                      <ion-card-subtitle></ion-card-subtitle>
                     </ion-card-header>
                     <ion-card-content>
-                      Here's a small text description 
+                      Projet terminer 
                     </ion-card-content>
                   </ion-col>
                   <ion-col>
-                      <ion-avatar class="avatar"></ion-avatar>
+                      <div class="avatar  ion-text-center ">{{F}}</div>
+                      
                   </ion-col>
                 </ion-row>  
               </ion-card>      
@@ -107,19 +110,35 @@
           
               <ion-grid>
                 
-                  <ion-row>
+                  <ion-row class="titles">
                     <ion-col>Titre</ion-col>
                     <ion-col>Date-debut</ion-col>
                     <ion-col>Date-fin</ion-col>
                     <ion-col>status</ion-col>
                   </ion-row>
                 
-                <ion-row *ngFor="let projet of projets">
-                  <ion-col>{{projet.Titre}}</ion-col>
-                  <ion-col>{{projet.date_debut}}</ion-col>
-                  <ion-col>{{projet.date_fin}}</ion-col>
-                  <ion-col><ion-badge [style.background-color]="projet.badgeColor">.</ion-badge>
-                  </ion-col>
+                <ion-row class="rows_date" *ngFor="let projet of projets">
+                  <ion-item-sliding>
+                    <ion-item-options side="start">
+                      <ion-item-option style="background-color: #2d38d3;" [routerLink]="[projet.id]"><ion-icon name="eye-outline"></ion-icon></ion-item-option>
+                      <ion-item-option style="background-color: #2dd36f;"><ion-icon name="checkmark-done-outline"></ion-icon></ion-item-option>
+                    </ion-item-options>
+                
+                    <ion-item>
+                        <ion-col>{{projet.Titre}}</ion-col>
+                        <ion-col>{{projet.date_debut}}</ion-col>
+                        <ion-col>{{projet.date_fin}}</ion-col>
+                        <ion-col><ion-badge [style.background-color]="projet.badgeColor">.</ion-badge>
+                        </ion-col>
+                    
+                    </ion-item>
+                
+                    <ion-item-options side="end">
+                      <ion-item-option [routerLink]="['edit',projet.id]"><ion-icon name="brush-outline"></ion-icon></ion-item-option>
+                      <ion-item-option color="danger"  (click)="ondelete(projet)"><ion-icon name="trash-outline"></ion-icon></ion-item-option>
+                    </ion-item-options>
+                  </ion-item-sliding>
+                  
                 </ion-row>
               </ion-grid>
           </ion-list> 

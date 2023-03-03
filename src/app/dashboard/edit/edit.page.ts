@@ -3,12 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { projet, ProjetService } from '../projet.service';
 
 @Component({
-  selector: 'app-projet-info',
-  templateUrl: './projet-info.page.html',
-  styleUrls: ['./projet-info.page.scss'],
+  selector: 'app-edit',
+  templateUrl: './edit.page.html',
+  styleUrls: ['./edit.page.scss'],
 })
-export class ProjetInfoPage implements OnInit {
-
+export class EditPage implements OnInit {
   projet!:projet |null
   id!:string
   constructor(private active_router:ActivatedRoute,private service:ProjetService) { }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionData, deleteDoc, doc, docData, Firestore, updateDoc } from '@angular/fire/firestore';
+import { Auth } from '@angular/fire/auth';
+import { addDoc, collection, collectionData, deleteDoc, doc, docData, Firestore, query, updateDoc, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 
@@ -22,11 +23,13 @@ export interface projet{
 })
 export class ProjetService {
 
-  constructor(private firestore:Firestore) { }
+  constructor(private firestore:Firestore , private auth:Auth) { }
 
-  getprojets():Observable<projet[]>{
-    const projetsref = collection(this.firestore,'projets');
-    return collectionData(projetsref, { idField: 'id' }) as unknown as Observable<projet[]>;
+  getprojets(): Observable<projet[]> {
+    const userId = this.auth.currentUser?.uid;
+    const projetsRef = collection(this.firestore, 'projets');
+    const q = query(projetsRef, where("chef", "==", userId));
+    return collectionData(q, { idField: 'id' })as unknown as Observable<projet[]>
   }
   addprojet(projet:projet){
     const projetsref = collection(this.firestore,'projets');
