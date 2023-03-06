@@ -12,10 +12,10 @@
 //     margin-top: 40px;
 // }
 ion-card{
-    margin-top:100px;
-    width: 100%;
+    margin-top:80px;
+    width: 450px;
     border-radius: 15px;
-    box-shadow: -3px -3px 20px #ddd;
+    box-shadow: 8px 3px 22px 10px rgba(150,150 ,150, 0.11);
 }
 ion-input {
     border-radius: 6px;
@@ -26,4 +26,8 @@ ion-card *{
 }
 ion-icon {
     color: #052778;
+}
+.signup{
+    display: grid;
+    place-content: center;
 }
