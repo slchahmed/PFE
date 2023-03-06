@@ -11,6 +11,7 @@ export class ProjetInfoPage implements OnInit {
 
   projet!:projet |null
   id!:string
+  chek:boolean=false
   constructor(private active_router:ActivatedRoute,private service:ProjetService) { }
 
   ngOnInit() {
@@ -20,7 +21,10 @@ export class ProjetInfoPage implements OnInit {
     this.service.getprojetById(this.id).subscribe(res=>{
       this.projet = res as projet;
     })
-
+    
   }
+ remove(tache:string){
+  
 
+ }
 }

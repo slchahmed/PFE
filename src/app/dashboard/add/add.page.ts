@@ -15,9 +15,7 @@ export class AddPage implements OnInit {
   newEquipeMember!: string;
   taches: string[] = [];
   newtache!: string;
-  T!:number;
-  F!:number;
-  G!:number;
+
 
   constructor(private projetservice:ProjetService,private auth:Auth,private router:Router) { }
 
