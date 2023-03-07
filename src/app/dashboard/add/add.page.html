@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="dashboard"></ion-back-button>
     </ion-buttons>
     <ion-title>ADD</ion-title>
   </ion-toolbar>
@@ -13,7 +13,7 @@
       <ion-card-title>new project</ion-card-title>
     </ion-card-header>
   
-    <ion-card-content>
+    <ion-card-content >
       <form ngForm #f="ngForm" (submit)="ajouterProjet(f.value)">
           <ion-grid>
             <ion-row>
@@ -36,6 +36,7 @@
                   <ion-col>
                     <!-- date_debut  -->
                     <ion-item lines="none">
+                      <ion-label>De</ion-label>
                       <ion-datetime-button datetime="date1" presentation="date-time"></ion-datetime-button>
                       <ion-modal [keepContentsMounted]="true">
                         <ng-template>
@@ -48,7 +49,8 @@
                   <!-- date_fin  -->
                   <ion-col>
                     <ion-item lines="none">
-              
+                    <ion-label>A :</ion-label>
+                      
                       <ion-datetime-button slots="date-target" datetime="date2"  presentation="date-time"></ion-datetime-button>
                       <ion-modal [keepContentsMounted]="true">
                         <ng-template>
@@ -82,7 +84,16 @@
                     <ion-button (click)="addequipeMember()">add member</ion-button>
                   </ion-col>
                 </ion-row>
-
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-item lines="none" *ngFor="let newtache of taches"><ion-icon name="checkmark-done-circle-outline"></ion-icon>{{newtache}}</ion-item>
+                      <ion-label position="floating">Tache</ion-label>
+                      <ion-input [(ngModel)]="newtache" name="Tache"  type="text" minlenght="5"></ion-input>
+                    </ion-item>
+                    <ion-button (click)="addtache()">ajouter tache</ion-button>
+                  </ion-col>
+                </ion-row>
               </ion-col>
 
                 <!-- sujet col  -->
@@ -90,31 +101,20 @@
                 <ion-row>
                   <ion-col>
                     <ion-textarea required minlength="15" ngModel name="sujet" #sujet="ngModel"  placeholder="Les information donnes ici et tres important pour lequipe et pour le chefe lui meme" [clearOnEdit]="true" rows="10" spellcheck="true">
-                      <ion-note  *ngIf="!sujet.touched&&!sujet.valid">Les information donnes ici et tres important pour lequipe et pour le chefe lui meme</ion-note>
                     </ion-textarea>
+                    <ion-note color="danger" *ngIf="sujet.touched&&!sujet.valid">Les information donnes ici et tres important pour lequipe et pour le chefe lui meme</ion-note>
                   </ion-col>
                 </ion-row>
-                <ion-row>
-                  <ion-col>
-                     <ion-list>
-                      <ion-item *ngFor="let newtache of taches"><ion-icon name="checkmark-done-circle-outline"></ion-icon>{{newtache}}</ion-item>
-                     </ion-list>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col>
-                    <ion-item>
-                      <ion-label position="floating">Tache</ion-label>
-                      <ion-input [(ngModel)]="newtache" name="Tache"  type="text" minlenght="5"></ion-input>
-                    </ion-item>
-                    <ion-button (click)="addtache()">ajouter tache</ion-button>
-                  </ion-col>
-                </ion-row>
-
               </ion-col>
             </ion-row>
+            <ion-row  class="ion-text-center">
+              <ion-col>
+
+                <ion-button color="primary" fill="outline" type="submit" [disabled]="!f.valid">Ajouter un niveau projet</ion-button>
+              </ion-col>
+
+            </ion-row>
           </ion-grid>
-          <ion-button color="primary" fill="outline" type="submit" [disabled]="!f.valid">Ajouter un niveau projet</ion-button>
       </form>
     </ion-card-content>
   </ion-card>

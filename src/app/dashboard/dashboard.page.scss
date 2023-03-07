@@ -32,11 +32,12 @@ ion-card {
 // scrolling list 
 .overflow {
     width: 100%;
-    height:300px;
+    height:360px;
     padding: 10px;
     overflow-x: auto;
     overflow-y: auto ;
-    border-radius: 5px;
+    border-radius: 14px;
+    background-color: white;
 }
 ::-webkit-scrollbar {
     width: 4px;
@@ -61,7 +62,7 @@ ion-card {
     border-radius: 70px;
     display: grid;
     place-content: center;
-    box-shadow: 1px 1px 7px 0.1px hsl(58, 100%, 54%) ;
+    box-shadow: 1px 1px 7px 0.1px #FDA349 ;
 }
 .avatar2 {
     margin-left: 30%;
@@ -98,6 +99,27 @@ ion-card {
 
 .titles{
     color: #727272;
-    border-top:1px solid #727272;
-    border-bottom:1px solid #727272;
+    border:1px solid #dbdbdba8;
+    border-radius: 7px;
+   
 }
+
+.list_item{    
+    border:1px solid #dbdbdba8;
+    border-radius: 7px;
+    
+   
+}
+
+
+.rows_data{
+    transition: all 5 eases;
+    margin-top: 10px;
+    border-radius: 7px;
+}
+
+
+.slider{
+    border-radius: 7px;
+}
+

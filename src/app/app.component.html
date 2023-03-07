@@ -1,16 +1,16 @@
 <ion-app>
-  <ion-menu type='reveal'  contentId="main-content">
+  <ion-menu type="push" contentId="main-content">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Menu Content</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
-        <ion-list>
-          <ion-item>Profile</ion-item>
-          <ion-item>Calandrie</ion-item>
-          <ion-item (click)="logout()">Se Deconnecter</ion-item>
-        </ion-list> 
+      <ion-list>    
+        <ion-item [routerLink]="['dashboard']"><ion-icon slot="end" name="clipboard"></ion-icon>  Dashboard</ion-item>
+        <ion-item [routerLink]="['calandrie']"><ion-icon slot="end" name="calendar-outline"></ion-icon>   Calandrie</ion-item>
+        <ion-item (click)="logout()"><ion-icon slot="end" name="log-out"></ion-icon>  Se Deconnecter</ion-item>
+      </ion-list>
     </ion-content>
   </ion-menu>
   <ion-router-outlet id="main-content"></ion-router-outlet>
