@@ -16,7 +16,7 @@
         <h3>Equipe de projet</h3>
         <ion-item  lines="none" *ngFor="let member of projet?.equipe"><ion-icon name="people-outline"></ion-icon>{{member}}</ion-item>
         <h3>Taches</h3>
-        <ion-item  lines="none" *ngFor="let tache of projet?.taches"> <ion-checkbox [(ngModel)]="chek"   slot="start" (click)="remove(tache)"></ion-checkbox>
+        <ion-item  lines="none" *ngFor="let tache of projet?.taches"> <ion-checkbox    slot="start" (ionChange)="showAlert(tache)"></ion-checkbox>
           <ion-label>{{tache}}</ion-label></ion-item>
         <ion-item>status  : {{projet?.status}}</ion-item>
        

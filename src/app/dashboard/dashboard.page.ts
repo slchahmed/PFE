@@ -16,6 +16,7 @@ export class DashboardPage implements OnInit {
    T!:number
    G!:number
    F!:number   
+   P!:number   
    
   constructor(private auth:Auth,private serviceprojects:ProjetService) {
    }
@@ -27,6 +28,7 @@ export class DashboardPage implements OnInit {
      this.T=0
      this.G=0
      this.F=0
+     this.P=0
      
       for(let projet of projets){
          
@@ -55,13 +57,13 @@ export class DashboardPage implements OnInit {
           if (progress >= 1 && projet.status !== 'Completed') {
            projet.status = 'behind schedule';
            projet.badgeColor = '#ff0404';
-           this.F=this.F+1
+           this.P=this.P+1
            
  
          } 
          if (progress <= 0.6 && projet.status !=='Completed') {
            projet.status = 'In progress';
-           projet.badgeColor = '#34b74a';
+           projet.badgeColor = '#FDA349';
            this.G=this.G+1
            
  

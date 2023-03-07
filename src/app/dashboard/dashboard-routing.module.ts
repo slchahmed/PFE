@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'edit/:id',
     loadChildren: () => import('./edit/edit.module').then( m => m.EditPageModule)
   },
+  {
+    path: 'calandrie',
+    loadChildren: () => import('./calandrie/calandrie.module').then( m => m.CalandriePageModule)
+  },
 
 ];
 
