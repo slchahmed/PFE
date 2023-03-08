@@ -25,13 +25,20 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-<<<<<<< HEAD
 // ion-menu {
-//     width: 10%;
+//     --color: black;
 // }
 ion-menu ion-content {
-    
-    font-size: large;
+    --background: #F6F7FB;
 }
-=======
->>>>>>> bcd56a383e12b4fcd3f411c735324ef96b2d8e81
+// }
+ion-menu ion-content ion-list ion-item {
+    --background: #F6F7FB;
+}
+// ion-menu ion-content ion-list {
+//     --background: rgb(27, 25, 25);
+// }
+svg {
+    height: 42px;
+    padding: 0px;
+}
