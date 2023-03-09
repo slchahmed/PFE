@@ -18,7 +18,7 @@ export class SignupPage implements OnInit {
     await loading.dismiss();
 
     if(user) {
-      this.router.navigateByUrl('/dashboard',{replaceUrl:true})
+      this.router.navigateByUrl('/mobile-dash',{replaceUrl:true})
     }else{
        this.showAlert('Registration faild ','please try again!')
     }
