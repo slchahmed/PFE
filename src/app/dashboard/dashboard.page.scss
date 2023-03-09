@@ -115,3 +115,15 @@ ion-card {
     border-radius: 3px;
     cursor:grab;
 }
+ion-searchbar {
+   --border-radius: 10px ;
+}
+ion-buttons {
+    --color : blue ;
+    --font-size: 40px;
+    --width: 100%;
+}
+.add {
+    font-size:32px;
+    color: blue ;
+}
