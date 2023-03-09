@@ -74,9 +74,11 @@ export class DashboardPage implements OnInit {
             
  
          }
+         projet.date_debut = projet.date_debut.split(',')[0]; 
+         projet.date_fin = projet.date_debut.split(',')[0]; 
        
       }
-    
+      
       this.projets=projets;
       this.search_result=this.projets.slice()
     })

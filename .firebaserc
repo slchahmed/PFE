@@ -1,14 +1,5 @@
 {
-  "targets": {
-    "projet-fin-detude-1dc55": {
-      "hosting": {
-        "app": [
-          "admindash-v1"
-        ]
-      }
-    }
-  },
   "projects": {
-    "default": "projet-fin-detude-1dc55"
+    "default": "projet-fin-9feea"
   }
 }
