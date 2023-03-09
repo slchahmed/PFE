@@ -99,4 +99,14 @@ export class DashboardPage implements OnInit {
   const query = value.toLowerCase();
   this.search_result = this.projets.filter(d => d.Titre.toLowerCase().indexOf(query) > -1);
  }
+//  dark mode 
+//  watchtheme(){
+//   let prefersDark = window.matchMedia('(prefers-color-sheme):dark');
+//   console.log(prefersDark.matches);
+//   this.enableDark(prefersDark.matches);
+//  }
+//  enableDark(enable : boolean){
+//   document.body.classList.toggle('dark',enable);
+//  }
+
 }
