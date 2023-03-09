@@ -101,4 +101,5 @@ export class DashboardPage implements OnInit {
   const query = value.toLowerCase();
   this.search_result = this.projets.filter(d => d.Titre.toLowerCase().indexOf(query) > -1);
  }
+
 }
