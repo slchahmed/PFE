@@ -18,7 +18,7 @@ const routes: Routes = [
   },{
     path: 'signup',
     loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule),
-    
+    ...canActivate(redirectTodash)
   },
   {
     path: 'dashboard',
@@ -30,11 +30,7 @@ const routes: Routes = [
     loadChildren: () => import('./dashboard/calandrie/calandrie.module').then( m => m.CalandriePageModule),
     ...canActivate(redirectToLogin)
   },
-  {
-    path: 'mobile-dash',
-    loadChildren: () => import('./mobile-dash/mobile-dash.module').then( m => m.MobileDashPageModule),
-    ...canActivate(redirectToLogin)
-  },
+
   {
     path: 'projet-info-mobile',
     loadChildren: () => import('./projet-info-mobile/projet-info-mobile.module').then( m => m.ProjetInfoMobilePageModule)

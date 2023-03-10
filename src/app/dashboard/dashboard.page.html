@@ -83,12 +83,7 @@
       <!-- list columns ave checkbox-->
       <ion-col size-md="2" >
         <div class="listgauche">
-        <ion-list>
-              <ion-item lines="none"><ion-label>Il n'a pas encore commencé</ion-label><ion-badge style="background: linear-gradient(to right, #3661EC , #00C2FF) ;color: #0073ff ;">.</ion-badge></ion-item>
-              <ion-item lines="none"><ion-label>En cours</ion-label><ion-badge  style="background: hsl(58, 100%, 54%) ;color: hsl(58, 100%, 54%);" >.</ion-badge></ion-item>
-              <ion-item lines="none"><ion-label>Terminet</ion-label><ion-badge style="background: #34b74a; color: #34b74a;" >.</ion-badge></ion-item>
-      
-            </ion-list>
+           <ion-datetime [multiple]="true" [value]="impo_date!"></ion-datetime>
         </div>
       </ion-col>
     </ion-row>
@@ -130,15 +125,15 @@
                 <ion-row class="rows_data" *ngFor="let projet of search_result">
                   <ion-item-sliding class="slider">
                     <ion-item-options side="start">
-                      <ion-item-option style="background-color: #2d38d3;" [routerLink]="[projet.id]"><ion-icon name="eye-outline"></ion-icon></ion-item-option>
-                      <ion-item-option style="background-color: #3BAE74;" (click)="cheked(projet)"><ion-icon name="checkmark-done-outline"></ion-icon></ion-item-option>
+                      <ion-item-option style="background: #2d38d3;" [routerLink]="[projet.id]"><ion-icon name="eye-outline"></ion-icon></ion-item-option>
+                      <ion-item-option style="background: #3BAE74;" (click)="cheked(projet)"><ion-icon name="checkmark-done-outline"></ion-icon></ion-item-option>
                     </ion-item-options>
                 
                     <ion-item class="list_item" lines="none">
                         <ion-col>{{projet.Titre}}</ion-col>
                         <ion-col>{{projet.date_debut}}</ion-col>
                         <ion-col>{{projet.date_fin}}</ion-col>
-                        <ion-col><ion-badge [style.background-color]="projet.badgeColor">.</ion-badge>
+                        <ion-col><ion-badge [style.background]="projet.badgeColor">.</ion-badge>
                         </ion-col>
                     
                     </ion-item>

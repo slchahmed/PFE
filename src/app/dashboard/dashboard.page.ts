@@ -17,7 +17,7 @@ export class DashboardPage implements OnInit {
    G!:number
    F!:number   
    P!:number   
-   impo_date:string[] = ['2023-03-01']
+   impo_date:string[] = ['2023-03-01','2023-04-01']
    
   constructor(private auth:Auth,private serviceprojects:ProjetService) {
    }
@@ -83,7 +83,7 @@ export class DashboardPage implements OnInit {
         projet.date_fin = date_fin.toISOString();
         projet.date_debut = projet.date_debut.split('T')[0]; 
         projet.date_fin = projet.date_debut.split('T')[0]; 
-         this.impo_date.push(projet.date_fin)
+        this.impo_date.push(projet.date_fin)
          
       }
       console.log(this.impo_date)
@@ -96,6 +96,7 @@ export class DashboardPage implements OnInit {
     this.T=0
    
  }
+
 
  ondelete(projet:projet){
     this.serviceprojects.deleteprojet(projet)

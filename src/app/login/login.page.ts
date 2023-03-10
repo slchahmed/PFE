@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
     await loading.dismiss();
     
     if(user) {
-      this.router.navigateByUrl('/mobile-dash',{replaceUrl:true})
+      this.router.navigateByUrl('/dashboard',{replaceUrl:true})
     }else{
        this.showAlert('login faild ','please try again!')
     }
