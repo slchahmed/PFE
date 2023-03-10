@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="dashboard"></ion-back-button>
     </ion-buttons>
@@ -67,9 +67,9 @@
                   <ion-col>
                     <ion-row>
                       <ion-col>
-                         <ion-list>
+                        <ion-list>
                           <ion-item *ngFor="let member of equipe"><ion-icon name="people-outline"></ion-icon>{{member}}</ion-item>
-                         </ion-list>
+                        </ion-list>
                         
                       </ion-col>
                     </ion-row>
@@ -100,9 +100,12 @@
               <ion-col>
                 <ion-row>
                   <ion-col>
-                    <ion-textarea required minlength="15" ngModel name="sujet" #sujet="ngModel"  placeholder="Les information donnes ici et tres important pour lequipe et pour le chefe lui meme" [clearOnEdit]="true" rows="10" spellcheck="true">
-                    </ion-textarea>
-                    <ion-note color="danger" *ngIf="sujet.touched&&!sujet.valid">Les information donnes ici et tres important pour lequipe et pour le chefe lui meme</ion-note>
+                    <h1>L'information de projet <ion-icon slot="end" name="bookmarks"></ion-icon></h1>
+                    <ion-card>
+                      <ion-textarea required minlength="15" ngModel name="sujet" #sujet="ngModel"  placeholder="Les information donnes ici et tres important pour lequipe et pour le chefe lui meme" [clearOnEdit]="true" rows="10" spellcheck="true">
+                      </ion-textarea>
+                      <ion-note color="danger" *ngIf="sujet.touched&&!sujet.valid">Les information donnes ici et tres important pour lequipe et pour le chefe lui meme</ion-note>
+                    </ion-card>
                   </ion-col>
                 </ion-row>
               </ion-col>
