@@ -13,17 +13,26 @@ const routes: Routes = [
     loadChildren: () => import('./add/add.module').then( m => m.AddPageModule)
   },
   {
-    path: ':id',
-    loadChildren: () => import('./projet-info/projet-info.module').then( m => m.ProjetInfoPageModule)
+    path: 'calandrie',
+    loadChildren: () => import('./calandrie/calandrie.module').then( m => m.CalandriePageModule)
+  },
+  {
+    path: 'notifications',
+    loadChildren: () => import('./notifications/notifications.module').then( m => m.NotificationsPageModule)
   },
   {
     path: 'edit/:id',
     loadChildren: () => import('./edit/edit.module').then( m => m.EditPageModule)
   },
   {
-    path: 'calandrie',
-    loadChildren: () => import('./calandrie/calandrie.module').then( m => m.CalandriePageModule)
+    path: ':id',
+    loadChildren: () => import('./projet-info/projet-info.module').then( m => m.ProjetInfoPageModule)
   },
+  {
+    path: 'list-date/:datetime',
+    loadChildren: () => import('./list-date/list-date.module').then( m => m.ListDatePageModule)
+  },
+
 
 ];
 

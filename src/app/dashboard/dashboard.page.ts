@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { projet, ProjetService } from './projet.service';
 
@@ -17,9 +18,9 @@ export class DashboardPage implements OnInit {
    G!:number
    F!:number   
    P!:number   
-   impo_date:string[] = ['2023-03-01','2023-04-01']
+   passe_delai:number = 0
    
-  constructor(private auth:Auth,private serviceprojects:ProjetService) {
+  constructor(private auth:Auth,private serviceprojects:ProjetService,private router:Router) {
    }
 
   ngOnInit() {
@@ -59,6 +60,7 @@ export class DashboardPage implements OnInit {
            projet.status = 'behind schedule';
            projet.badgeColor = '#ff0404';
            this.P=this.P+1
+        
            
  
          } 
@@ -75,6 +77,9 @@ export class DashboardPage implements OnInit {
             
  
          }
+         if (projet.status == 'behind schedule'){
+          this.passe_delai=this.passe_delai + 1
+         }
          const date_debut = new Date(projet.date_debut);
          const date_fin = new Date(projet.date_fin);
 
@@ -82,11 +87,11 @@ export class DashboardPage implements OnInit {
         projet.date_debut = date_debut.toISOString();
         projet.date_fin = date_fin.toISOString();
         projet.date_debut = projet.date_debut.split('T')[0]; 
-        projet.date_fin = projet.date_debut.split('T')[0]; 
-        this.impo_date.push(projet.date_fin)
+        projet.date_fin = projet.date_fin.split('T')[0]; 
+     
          
       }
-      console.log(this.impo_date)
+     
       
       this.projets=projets;
       this.search_result=this.projets.slice()
@@ -110,6 +115,11 @@ export class DashboardPage implements OnInit {
  handleChange(value:string){
   const query = value.toLowerCase();
   this.search_result = this.projets.filter(d => d.Titre.toLowerCase().indexOf(query) > -1);
+ }
+ list_proj(datetime:string |string[] |null | undefined){
+    
+    console.log(datetime)
+    this.router.navigate(['dashboard','list-date',datetime as string])
  }
 
 }

@@ -4,7 +4,10 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>dashboard</ion-title>
-    
+    <ion-buttons style="font-size: 30px;" slot="end" [routerLink]="['notifications']">
+      <ion-badge color="danger">{{passe_delai}}</ion-badge>
+      <ion-icon  name="notifications"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -83,7 +86,11 @@
       <!-- list columns ave checkbox-->
       <ion-col size-md="2" >
         <div class="listgauche">
-           <ion-datetime [multiple]="true" [value]="impo_date!"></ion-datetime>
+           <ion-datetime  [showDefaultButtons]="true"
+           doneText="search"
+           cancelText="Annuler"
+           #datetime 
+           (ionChange)="list_proj(datetime?.value)"></ion-datetime>
         </div>
       </ion-col>
     </ion-row>
@@ -93,8 +100,8 @@
       <ion-col offset-md="2">
         <div class="overflow">
           <ion-row>
-            <ion-col size="5">
-              <h2>Projets</h2>
+            <ion-col size="3">
+              <h3>Projets</h3>
             </ion-col>
             <ion-col size="1">
               <ion-buttons >
@@ -105,7 +112,7 @@
                 </div>
               </ion-buttons>
             </ion-col>
-            <ion-col size="6">
+            <ion-col size="6" offset="2">
               <ion-searchbar  color="Medium" ngModel #value='ngModel' [debounce]="" (ionChange)="handleChange(value.value)"></ion-searchbar>
             </ion-col> 
           </ion-row>
@@ -133,7 +140,7 @@
                         <ion-col>{{projet.Titre}}</ion-col>
                         <ion-col>{{projet.date_debut}}</ion-col>
                         <ion-col>{{projet.date_fin}}</ion-col>
-                        <ion-col><ion-badge [style.background]="projet.badgeColor">.</ion-badge>
+                        <ion-col><ion-badge [style.background]="projet.badgeColor" [style.color]="projet.badgeColor">.</ion-badge>
                         </ion-col>
                     
                     </ion-item>
