@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { projet, ProjetService } from '../projet.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class EditPage implements OnInit {
   taches: string[] = [];
   newtache!: string;
   id!:string
-  constructor(private active_router:ActivatedRoute,private service:ProjetService,private auth:Auth) { }
+  constructor(private active_router:ActivatedRoute,private service:ProjetService,private auth:Auth,private router:Router) { }
 
   ngOnInit() {
     this.active_router.paramMap.subscribe(paramap=>{
@@ -99,6 +99,7 @@ export class EditPage implements OnInit {
           }
           console.log(projet.status)
     this.service.updateprojet(projet)
+    this.router.navigateByUrl('/dashboard')
    }
 
   addequipeMember() {

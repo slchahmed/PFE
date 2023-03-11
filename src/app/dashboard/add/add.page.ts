@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { projet, ProjetService } from '../projet.service';
 
 
@@ -17,7 +18,7 @@ export class AddPage implements OnInit {
   newtache!: string;
 
 
-  constructor(private projetservice:ProjetService,private auth:Auth,private router:Router) { }
+  constructor(private projetservice:ProjetService,private auth:Auth,private router:Router,private alertController :AlertController) { }
 
   ngOnInit() {
   }
@@ -43,7 +44,9 @@ export class AddPage implements OnInit {
           const currentDate = new Date();
           const totalTime = projet.date_fin - projet.date_debut;
           const elapsed = currentDate.getTime() - projet.date_debut;
-  
+          if(totalTime < 0){
+            this.showAlert()
+          }else{
           const date_d = new Date(projet.date_debut);
           const dateString_d = date_d.toLocaleString()
           projet.date_debut = dateString_d
@@ -76,9 +79,9 @@ export class AddPage implements OnInit {
 
 
         this.projetservice.addprojet(projet)
-        // this.router.navigateByUrl('/dashboard')
+        this.router.navigateByUrl('/dashboard')
 
-  
+        }
   }
  
 
@@ -99,6 +102,16 @@ export class AddPage implements OnInit {
       console.log(this.equipe)
     }
   }
+  
+    async showAlert() {
+      const alert = await this.alertController.create({
+        header:'important',
+        message:'invalid date format',
+        buttons:['ok'],
+      })
+      await alert.present();
+    }
 }
+
 
 
