@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>dashboard</ion-title>
-    <ion-buttons style="font-size: 30px;" slot="end" [routerLink]="['notifications']">
+    <ion-buttons style="font-size: 30px; cursor:pointer;" slot="end" [routerLink]="['notifications']">
       <ion-badge color="danger">{{passe_delai}}</ion-badge>
       <ion-icon  name="notifications"></ion-icon>
     </ion-buttons>
@@ -136,7 +136,7 @@
                       <ion-item-option style="background: #3BAE74;" (click)="cheked(projet)"><ion-icon name="checkmark-done-outline"></ion-icon></ion-item-option>
                     </ion-item-options>
                 
-                    <ion-item class="list_item" lines="none">
+                    <ion-item class="list_item" lines="none" style=" cursor:e-resize;">
                         <ion-col>{{projet.Titre}}</ion-col>
                         <ion-col>{{projet.date_debut}}</ion-col>
                         <ion-col>{{projet.date_fin}}</ion-col>
