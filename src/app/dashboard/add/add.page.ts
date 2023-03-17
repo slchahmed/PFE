@@ -68,7 +68,7 @@ export class AddPage implements OnInit {
             projet.status = 'In progress';
            
           } 
-        
+          
        
 
 

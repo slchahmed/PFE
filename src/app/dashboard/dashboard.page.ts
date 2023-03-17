@@ -51,9 +51,10 @@ export class DashboardPage implements OnInit {
  
          const progress = elapsed / totalTime;
  
-         if (elapsed <= 0) {
-           projet.status = 'Not started';
-           projet.badgeColor = 'hsl(58,100%,54%)';
+       
+         if ( progress<0 && projet.status == 'Not started') {
+           
+           projet.badgeColor = 'primary';
           
          }
           if (progress >= 1 && projet.status !== 'Completed') {
@@ -64,7 +65,7 @@ export class DashboardPage implements OnInit {
            
  
          } 
-         if (progress <= 0.6 && projet.status !=='Completed') {
+         if (progress <= 1 && progress > 0 && projet.status !=='Completed') {
            projet.status = 'In progress';
            projet.badgeColor = '#FDA349';
            this.G=this.G+1
@@ -72,22 +73,18 @@ export class DashboardPage implements OnInit {
  
          } 
           if(projet.status == 'Completed'){
-           projet.badgeColor = '#55ad48';
-           this.F=this.F+1
+            projet.status = 'Completed';
+            projet.badgeColor = '#55ad48';
+            this.F=this.F+1
             
  
          }
          if (projet.status == 'behind schedule'){
           this.passe_delai=this.passe_delai + 1
          }
-         const date_debut = new Date(projet.date_debut);
-         const date_fin = new Date(projet.date_fin);
-
-// Format the date in the ISO 8601 format
-        projet.date_debut = date_debut.toISOString();
-        projet.date_fin = date_fin.toISOString();
-        projet.date_debut = projet.date_debut.split('T')[0]; 
-        projet.date_fin = projet.date_fin.split('T')[0]; 
+     
+        projet.date_debut = projet.date_debut.split(',')[0]; 
+        projet.date_fin = projet.date_fin.split(',')[0]; 
      
          
       }
@@ -95,6 +92,7 @@ export class DashboardPage implements OnInit {
       
       this.projets=projets;
       this.search_result=this.projets.slice()
+      console.log(this.search_result)
     })
   }
   ionViewDidleave(){

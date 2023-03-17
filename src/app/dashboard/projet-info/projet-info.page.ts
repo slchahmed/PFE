@@ -28,7 +28,7 @@ export class ProjetInfoPage implements OnInit {
     this.service.getprojetById(this.id).subscribe(projet=>{
    
       if (projet['status'] == 'Not started') {
-        projet['badgeColor'] = 'hsl(58,100%,54%)';
+        projet['badgeColor'] = 'blue';
        
       }
        if ( projet['status'] == 'behind schedule') {

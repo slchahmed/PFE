@@ -28,6 +28,9 @@
         <ion-menu-toggle>
         <ion-item [routerLink]="['dashboard']" ><ion-icon slot="end" name="clipboard" ></ion-icon>  Dashboard</ion-item>
       </ion-menu-toggle>
+        <ion-menu-toggle>
+        <ion-item [routerLink]="['stats']" ><ion-icon slot="end" name="stats-chart-outline"></ion-icon>Stats</ion-item>
+      </ion-menu-toggle>
       
       <ion-menu-toggle>
         <ion-item (click)="logout()" ><ion-icon slot="end" name="log-out"></ion-icon>  Se Deconnecter</ion-item>

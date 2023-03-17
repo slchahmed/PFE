@@ -35,6 +35,13 @@ const routes: Routes = [
     path: 'projet-info-mobile',
     loadChildren: () => import('./projet-info-mobile/projet-info-mobile.module').then( m => m.ProjetInfoMobilePageModule)
   },
+  {
+    path: 'stats',
+    loadChildren: () => import('./stats/stats.module').then( m => m.StatsPageModule),
+    ...canActivate(redirectToLogin)
+
+  },
+
 ];
 
 @NgModule({

@@ -87,14 +87,14 @@ export class EditPage implements OnInit {
             projet.status = 'Not started';
             
           } else if (progress >= 1) {
-            projet.status = 'Completed';
+            projet.status = 'Behind schedule';
             
            } 
           else if (progress <= 0.6) {
             projet.status = 'In progress';
            
           } else {
-            projet.status = 'Behind schedule';
+            projet.status = 'Completed';
             
           }
           console.log(projet.status)
