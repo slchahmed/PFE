@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
+import { collection, collectionData, Firestore, query, where } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
+import { AuthService, user } from './auth.service';
 import { projet, ProjetService } from './projet.service';
 
 @Component({
@@ -11,6 +13,17 @@ import { projet, ProjetService } from './projet.service';
 })
 export class DashboardPage implements OnInit {
    user = this.auth.currentUser;
+   user1!:user;
+   ajouter_un_projet!:boolean  | undefined
+   modidier_un_projet!:boolean | undefined
+   suprimer_un_projet!:boolean | undefined
+   ajouter_un_utilisateur!:boolean | undefined
+   modifier_un_utilisateur!:boolean | undefined
+   suprimer_un_utilisateur!:boolean | undefined
+   termination_des_taches!:boolean | undefined
+   suprimer_des_taches!:boolean | undefined
+   gestion_des_utilisateur!:boolean |undefined
+  
    projets!:projet[];
    search_result!:projet[];
    columns = [{ prop: 'Title' }, { name: 'date_debut' }, { name: 'date_fin' },{ name: 'status' }];
@@ -19,11 +32,26 @@ export class DashboardPage implements OnInit {
    F!:number   
    P!:number   
    passe_delai:number = 0
-   
-  constructor(private auth:Auth,private serviceprojects:ProjetService,private router:Router) {
+  constructor(private auth:Auth,private serviceprojects:ProjetService,private router:Router,private firestore:Firestore) {
    }
 
   ngOnInit() {
+    this.getuser().subscribe(user=>{
+      const chef = user
+      this.user1 = chef[0]
+   
+      this.ajouter_un_projet=this.user1.authorisations?.ajouter_un_projet
+      this.modidier_un_projet=this.user1.authorisations?.modidier_un_projet
+      this.suprimer_un_projet=this.user1.authorisations?.suprimer_un_projet
+      this.ajouter_un_utilisateur=this.user1.authorisations?.ajouter_un_utilisateur
+      this.modifier_un_utilisateur=this.user1.authorisations?.modifier_un_utilisateur
+      this.suprimer_un_utilisateur=this.user1.authorisations?.suprimer_un_utilisateur
+      this.termination_des_taches=this.user1.authorisations?.termination_des_taches
+      this.suprimer_des_taches=this.user1.authorisations?.suprimer_des_taches
+      this.gestion_des_utilisateur=this.user1.authorisations.gestion_des_utilisateur
+
+      console.log(this.gestion_des_utilisateur)
+    })
     
     this.serviceprojects.getprojets().subscribe(projets =>{
     
@@ -33,6 +61,7 @@ export class DashboardPage implements OnInit {
      this.P=0
      
       for(let projet of projets){
+        
          
          this.T=this.T+1
          projet.date_debut= new Date(projet.date_debut).getTime();
@@ -92,7 +121,7 @@ export class DashboardPage implements OnInit {
       
       this.projets=projets;
       this.search_result=this.projets.slice()
-      console.log(this.search_result)
+    
     })
   }
   ionViewDidleave(){
@@ -116,8 +145,14 @@ export class DashboardPage implements OnInit {
  }
  list_proj(datetime:string |string[] |null | undefined){
     
-    console.log(datetime)
+    
     this.router.navigate(['dashboard','list-date',datetime as string])
  }
+ getuser(): Observable<user[]> {
+  const usermail = this.auth.currentUser?.email;
+  const usersRef = collection(this.firestore, 'users');
+  const q = query(usersRef, where("email", "==", usermail));
+  return collectionData(q, { idField: 'id' })as unknown as Observable<user[]>
+}
 
 }

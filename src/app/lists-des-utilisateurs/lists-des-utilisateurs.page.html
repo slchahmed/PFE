@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>lists-des-utilisateurs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid color="dark">
+    <ion-row>
+      <ion-col offset-md="2" size-md="8">
+        <div class="overflow_container">
+          <ion-row>
+            <ion-col size="3">
+              <h3>utilisateurs</h3>
+            </ion-col>
+            <ion-col size="1">
+              <ion-buttons >
+                <div class="add">
+                  <ion-button *ngIf="ajouter_un_utilisateur"  style="font-size: 18px;" [routerLink]="['getios-dutulisateurs']">ajouter
+                    <ion-icon name="person-add-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </ion-buttons>
+            </ion-col>
+            <ion-col size="6" offset="2">
+              <ion-searchbar  color="Medium" ngModel #value='ngModel' [debounce]="" (ionChange)="handleChange(value.value)"></ion-searchbar>
+            </ion-col> 
+          </ion-row>
+          <ion-row>
+            <ion-col>
+          <ion-list>
+          
+              <ion-grid>
+                
+                  <ion-row class="titles">
+                    <ion-col>Nom</ion-col>
+                    <ion-col>email</ion-col>
+                  </ion-row>
+                <div class="overflow">
+                <ion-row class="rows_data" *ngFor="let user of search_result">
+                  <ion-item-sliding class="slider">
+                    <ion-item-options side="start">
+                      <!-- <ion-item-option style="background: #2d38d3;" [routerLink]="[user.id]"><ion-icon name="eye-outline"></ion-icon></ion-item-option> -->
+                    </ion-item-options>
+                
+                    <ion-item class="list_item" lines="none" style=" cursor:e-resize;">
+                        <ion-col>{{user.nom}}</ion-col>
+                        <ion-col>{{user.email}}</ion-col>
+                      
+                    
+                    </ion-item>
+                
+                    <ion-item-options side="end">
+                      <ion-item-option *ngIf="modifier_un_utilisateur" [routerLink]="['edit',user.email]"><ion-icon name="brush-outline"></ion-icon></ion-item-option>
+                      <ion-item-option *ngIf="suprimer_un_utilisateur" color="danger"  (click)="ondelete(user)"><ion-icon name="trash-outline"></ion-icon></ion-item-option>
+                    </ion-item-options>
+                  </ion-item-sliding>
+                  
+                </ion-row>
+              </div>
+              </ion-grid>
+          </ion-list> 
+        </ion-col>
+        </ion-row>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

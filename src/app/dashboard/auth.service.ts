@@ -4,10 +4,21 @@ import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 
 export interface user{
   nom:string;
-  phone_number:string;
+  phone_number?:string;
   photoURL?:string;
   email:string;
-  age:number;
+  age?:number;
+  authorisations:{
+    ajouter_un_projet:boolean,
+    modidier_un_projet:boolean,
+    suprimer_un_projet:boolean,
+    ajouter_un_utilisateur:boolean,
+    modifier_un_utilisateur:boolean,
+    suprimer_un_utilisateur:boolean,
+    termination_des_taches:boolean,
+    suprimer_des_taches:boolean,
+    gestion_des_utilisateur:boolean,
+  };
 }
 @Injectable({
   providedIn: 'root'

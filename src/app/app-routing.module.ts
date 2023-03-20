@@ -41,6 +41,16 @@ const routes: Routes = [
     ...canActivate(redirectToLogin)
 
   },
+  {
+    path: 'getios-dutulisateurs',
+    loadChildren: () => import('./getios-dutulisateurs/getios-dutulisateurs.module').then( m => m.GetiosDutulisateursPageModule),
+    ...canActivate(redirectToLogin)
+  },  {
+    path: 'lists-des-utilisateurs',
+    loadChildren: () => import('./lists-des-utilisateurs/lists-des-utilisateurs.module').then( m => m.ListsDesUtilisateursPageModule)
+  },
+
+
 
 ];
 

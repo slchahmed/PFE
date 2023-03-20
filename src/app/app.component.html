@@ -26,12 +26,15 @@
     <ion-content>
       <ion-list style="background-color: #F6F7FB">   
         <ion-menu-toggle>
-        <ion-item [routerLink]="['dashboard']" ><ion-icon slot="end" name="clipboard" ></ion-icon>  Dashboard</ion-item>
+        <ion-item [routerLink]="['dashboard']" ><ion-icon slot="end" name="clipboard" ></ion-icon>tableau de bord</ion-item>
       </ion-menu-toggle>
         <ion-menu-toggle>
         <ion-item [routerLink]="['stats']" ><ion-icon slot="end" name="stats-chart-outline"></ion-icon>Stats</ion-item>
       </ion-menu-toggle>
       
+        <ion-menu-toggle >
+        <ion-item [routerLink]="['lists-des-utilisateurs']" ><ion-icon slot="end" name="accessibility-outline"></ion-icon>gestion des utilisateurs</ion-item>
+      </ion-menu-toggle> 
       <ion-menu-toggle>
         <ion-item (click)="logout()" ><ion-icon slot="end" name="log-out"></ion-icon>  Se Deconnecter</ion-item>
       </ion-menu-toggle>
