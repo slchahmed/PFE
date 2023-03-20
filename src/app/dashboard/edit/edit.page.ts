@@ -12,8 +12,9 @@ export class EditPage implements OnInit {
   projet!:projet |null
   equipe: string[] = [];
   newEquipeMember!: string;
-  taches: string[] = [];
-  newtache!: string;
+  taches: {title?:string,isdone?:boolean}[] = [];
+  newtache: {title:string,isdone:boolean} = {title:'',isdone:false};
+  title!:string;
   id!:string
   constructor(private active_router:ActivatedRoute,private service:ProjetService,private auth:Auth,private router:Router) { }
 
@@ -22,9 +23,11 @@ export class EditPage implements OnInit {
      this.id= paramap.get('id') as string
     })
     this.service.getprojetById(this.id).subscribe(res=>{
+      console.log(res['taches'])
       this.projet = res as projet;
-      for(let i of this.projet?.equipe){
 
+      for(let i of this.projet?.equipe){
+        
         if (i && !this.equipe.includes(i)) {
           this.equipe.push(i);
          
@@ -33,13 +36,12 @@ export class EditPage implements OnInit {
         }
       }
       for(let i of this.projet.taches!){
-        if (i && !this.taches.includes(i)) {
+       
      
           this.taches.push(i);
           
-          i=''
+          // i.title=''
          
-        }
       }
     })
 
@@ -112,13 +114,13 @@ export class EditPage implements OnInit {
   }
 
   addtache() {
-    if (this.newtache && !this.taches.includes(this.newtache)) {
-     
+    if (this.title) {
+      this.newtache.title=this.title
       this.taches.push(this.newtache);
       console.log(this.newtache)
-      this.newtache=''
-      console.log(this.taches)
+      this.title=''
     }
+    console.log(this.taches)
   }
 
 }

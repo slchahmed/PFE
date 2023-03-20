@@ -3,6 +3,7 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signO
 import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 
 export interface user{
+  id?:string;
   nom:string;
   phone_number?:string;
   photoURL?:string;
@@ -19,6 +20,7 @@ export interface user{
     suprimer_des_taches:boolean,
     gestion_des_utilisateur:boolean,
   };
+  password?:number;
 }
 @Injectable({
   providedIn: 'root'

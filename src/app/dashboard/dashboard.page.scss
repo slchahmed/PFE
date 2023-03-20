@@ -5,6 +5,7 @@
     margin-top: 20px;
     border-radius: 10px;
     width: 300px; 
+    font-size: 2px;
     box-shadow: 8px 3px 22px 10px rgba(150,150 ,150, 0.11);
 }
 ion-badge {
@@ -126,9 +127,12 @@ ion-searchbar {
    --border-radius: 10px ;
 }
 ion-buttons {
-    --color : blue ;
+    // --color : blue ;
     --font-size: 40px;
     --width: 100%;
+    // border-color: #3661EC;
+   
+
 }
 .add {
     font-size:32px;

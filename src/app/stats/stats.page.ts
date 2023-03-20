@@ -103,6 +103,7 @@ rederchartbar(N:number,G:number,T:number,P:number){
       datasets: [{
         label: '# of Votes',
         data: [N, G, T, P],
+        fill:true,
         borderWidth: 1,
         backgroundColor: [
           '#3661EC',
@@ -117,15 +118,7 @@ rederchartbar(N:number,G:number,T:number,P:number){
       }]
     },
     options: {
-      animations: {
-        tension: {
-          duration: 1000,
-          easing: 'linear',
-          from: 1,
-          to: 0,
-          loop: true
-        }
-      },
+   
       aspectRatio: 5,
       plugins:{
         colors: {

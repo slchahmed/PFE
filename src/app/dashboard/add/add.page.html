@@ -87,9 +87,9 @@
                 <ion-row>
                   <ion-col>
                     <ion-item>
-                      <ion-item lines="none" *ngFor="let newtache of taches"><ion-icon name="checkmark-done-circle-outline"></ion-icon>{{newtache}}</ion-item>
+                      <ion-item lines="none" *ngFor="let newtache of taches"><ion-icon name="checkmark-done-circle-outline"></ion-icon>{{newtache.title}}</ion-item>
                       <ion-label position="floating">Tache</ion-label>
-                      <ion-input [(ngModel)]="newtache" name="Tache"  type="text" minlenght="5"></ion-input>
+                      <ion-input [(ngModel)]="title" name="Tache"  type="text" minlenght="5"></ion-input>
                     </ion-item>
                     <ion-button (click)="addtache()">ajouter tache</ion-button>
                   </ion-col>

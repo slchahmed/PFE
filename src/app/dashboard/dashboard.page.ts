@@ -50,7 +50,6 @@ export class DashboardPage implements OnInit {
       this.suprimer_des_taches=this.user1.authorisations?.suprimer_des_taches
       this.gestion_des_utilisateur=this.user1.authorisations.gestion_des_utilisateur
 
-      console.log(this.gestion_des_utilisateur)
     })
     
     this.serviceprojects.getprojets().subscribe(projets =>{

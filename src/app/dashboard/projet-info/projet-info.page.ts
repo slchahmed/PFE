@@ -18,7 +18,7 @@ export class ProjetInfoPage implements OnInit {
   id!:string
   chek:boolean=false
   user!:user[] 
-  chef!:user
+  chef!:any
   constructor(private auth:Auth,private active_router:ActivatedRoute,private service:ProjetService,private alertcontroller:AlertController,private firestore:Firestore) { }
 
   ngOnInit() {
@@ -51,9 +51,8 @@ export class ProjetInfoPage implements OnInit {
       this.getuser().subscribe(user=>{
         this.user = user
       
-        this.chef = this.user[0]
-      
-        projet['chef'] = this.chef?.nom
+        this.chef = this.user[0].nom
+        
         this.projet = projet as projet;
       })
    
@@ -68,26 +67,36 @@ export class ProjetInfoPage implements OnInit {
 
 
 
- async showAlert(tache:string) {
-  const alert = await this.alertcontroller.create({
+ async showAlert(tache:{title?:string,isdone?:boolean},i:number) {
+  const alertId = `alert-${i}`;
+    
+
+   
+    const alert = await this.alertcontroller.create({
+    id: alertId,
     header:'improtant ! ',
     subHeader: 'Es-tu sûr que ça finira',
     buttons:[{
       text:'ok',
       role:'confirm',
       handler:()=>{
-        console.log(tache)
-        this.projet!.taches = this.projet?.taches!.filter(t => t !== tache);
+        // this.projet!.taches = this.projet?.taches!.filter(t => t !== tache);
         this.service.updateprojet(this.projet)
       } 
     },
     {
       text:'annuler',
-      role:'cancel'
+      role:'cancel',
+      handler:()=>{
+        tache.isdone=false;
+      } 
+      
     }
   ],
   })
+ 
   await alert.present();
+
 }
 
 getuser(): Observable<user[]> {

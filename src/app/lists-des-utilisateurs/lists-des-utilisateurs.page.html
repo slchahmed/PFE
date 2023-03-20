@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="modifier_un_utilisateur">
   <ion-grid color="dark">
     <ion-row>
       <ion-col offset-md="2" size-md="8">
@@ -54,7 +54,7 @@
                     </ion-item>
                 
                     <ion-item-options side="end">
-                      <ion-item-option *ngIf="modifier_un_utilisateur" [routerLink]="['edit',user.email]"><ion-icon name="brush-outline"></ion-icon></ion-item-option>
+                      <ion-item-option *ngIf="modifier_un_utilisateur" [routerLink]="['edit',user.id]"><ion-icon name="brush-outline"></ion-icon></ion-item-option>
                       <ion-item-option *ngIf="suprimer_un_utilisateur" color="danger"  (click)="ondelete(user)"><ion-icon name="trash-outline"></ion-icon></ion-item-option>
                     </ion-item-options>
                   </ion-item-sliding>
@@ -70,3 +70,19 @@
     </ion-row>
   </ion-grid>
 </ion-content>
+<ion-grid>
+  <ion-row class="ion-text-center">
+    <ion-col>
+      <div class="ion-text-center" style="font-weight: bolder;padding: 20px;"  *ngIf="!modifier_un_utilisateur">
+       
+
+        vous n'avez pas la bonne permission,<ion-icon name="key-outline"></ion-icon> vous devez consulter votre administrateur
+            <div style="font-size: 80px;">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+            </div>
+      
+      
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>

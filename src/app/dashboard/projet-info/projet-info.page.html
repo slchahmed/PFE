@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="/dashboard" slot="start"></ion-back-button>
     </ion-buttons>
     <ion-title>{{projet?.Titre}}</ion-title>
   </ion-toolbar>
@@ -14,7 +14,7 @@
         <h3>Titre  :</h3>
         <ion-item> <h5>{{projet?.Titre}}</h5></ion-item>
         <h3>Chef de projet  :</h3>
-        <ion-item><h5>{{projet?.chef}}</h5></ion-item>
+        <ion-item><h5>{{chef}}</h5></ion-item>
         <h3>Equipe de projet :</h3>
         <ion-item  lines="none" *ngFor="let member of projet?.equipe"><ion-icon name="people-outline"></ion-icon>{{member}}</ion-item>
       <h3>status  :</h3>
@@ -28,11 +28,15 @@
         <ion-item>{{projet?.date_fin}}</ion-item>
       </ion-col>
       <ion-col>
+        <h3>Taches:</h3>
+        <ion-item  lines="none" *ngFor="let tache of projet?.taches;let i = index;"> <ion-checkbox [(ngModel)]="tache.isdone"   slot="start" (click)="showAlert(tache,i)" ></ion-checkbox>
+          <ion-label *ngIf="!tache.isdone">{{tache.title}}</ion-label>
+          <del *ngIf="tache.isdone"><ion-label >{{tache.title}}</ion-label></del>
+        </ion-item>
         <h2>Sujet du projet</h2>
         <ion-item class="sujet" lines="none">{{projet?.sujet}}</ion-item>
-        <h3>Taches:</h3>
-        <ion-item  lines="none" *ngFor="let tache of projet?.taches"> <ion-checkbox    slot="start" (ionChange)="showAlert(tache)"></ion-checkbox>
-          <ion-label>{{tache}}</ion-label></ion-item>
+        
+        
       </ion-col>
     </ion-row>
   </ion-grid>

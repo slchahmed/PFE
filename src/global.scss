@@ -42,3 +42,13 @@ svg {
     height: 42px;
     padding: 0px;
 }
+:host .calendar-body .calendar-month .calendar-month-grid {
+    padding-left: unset;
+    padding-right: unset;
+    padding-inline: 10px;
+    height: 200px;
+}
+
+*{
+    font: roboto;
+}

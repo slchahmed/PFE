@@ -14,8 +14,9 @@ import { projet, ProjetService } from '../projet.service';
 export class AddPage implements OnInit {
   equipe: string[] = [];
   newEquipeMember!: string;
-  taches: string[] = [];
-  newtache!: string;
+  taches: {title?:string,isdone?:boolean}[] = [];
+  newtache: {title:string,isdone:boolean}={title:'',isdone:false};
+  title!:string;
 
 
   constructor(private projetservice:ProjetService,private auth:Auth,private router:Router,private alertController :AlertController) { }
@@ -94,13 +95,14 @@ export class AddPage implements OnInit {
     }
   }
   addtache() {
-    if (this.newtache && !this.taches.includes(this.newtache)) {
-     
+    if (this.title) {
+      this.newtache.title= this.title
       this.taches.push(this.newtache);
       console.log(this.newtache)
-      this.newtache=''
+      this.title=''
       console.log(this.equipe)
     }
+    console.log(this.taches)
   }
   
     async showAlert() {
