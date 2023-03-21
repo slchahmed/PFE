@@ -17,7 +17,7 @@ export class ProjetInfoPage implements OnInit {
   projet!:projet | null
   id!:string
   chek:boolean=false
-  user!:user[] 
+  user!:user
   chef!:any
   constructor(private auth:Auth,private active_router:ActivatedRoute,private service:ProjetService,private alertcontroller:AlertController,private firestore:Firestore) { }
 
@@ -49,10 +49,10 @@ export class ProjetInfoPage implements OnInit {
 
       }
       this.getuser().subscribe(user=>{
-        this.user = user
+        this.user = user[0] as user
       
-        this.chef = this.user[0].nom
-        
+        this.chef = this.user.nom
+        console.log(this.user)
         this.projet = projet as projet;
       })
    
@@ -69,9 +69,7 @@ export class ProjetInfoPage implements OnInit {
 
  async showAlert(tache:{title?:string,isdone?:boolean},i:number) {
   const alertId = `alert-${i}`;
-    
-
-   
+ 
     const alert = await this.alertcontroller.create({
     id: alertId,
     header:'improtant ! ',

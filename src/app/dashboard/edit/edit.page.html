@@ -22,7 +22,7 @@
                   <ion-col>
                     <ion-item>
                       <ion-label position="floating">Titre du projet</ion-label>
-                      <ion-input ngModel name="Titre" #Titre="ngModel" type="text" required minlenght="5" [value]="projet?.Titre"></ion-input>
+                      <ion-input ngModel name="Titre" #Titre="ngModel" type="text" minlenght="5" [value]="projet?.Titre"></ion-input>
                     </ion-item>
                     <ion-note color="danger" *ngIf="!Titre.valid&&Titre.touched">Titre et obligatoir</ion-note>
                   </ion-col>
@@ -37,7 +37,7 @@
                       <ion-datetime-button datetime="date1" presentation="date-time"></ion-datetime-button>
                       <ion-modal [keepContentsMounted]="true">
                         <ng-template>
-                          <ion-datetime [showDefaultButtons]="true" ngModel displayFormat="YYYY/MM/DD" name="date_debut" id="date1" presentation="date-time"></ion-datetime>
+                          <ion-datetime   [showDefaultButtons]="true" ngModel displayFormat="YYYY/MM/DD" name="date_debut" id="date1" presentation="date-time"></ion-datetime>
                         </ng-template>
                       </ion-modal>
                     </ion-item>
@@ -87,7 +87,7 @@
               <ion-col>
                 <ion-row>
                   <ion-col>
-                    <ion-textarea required minlength="15" ngModel name="sujet" #sujet="ngModel"  [value]="projet?.sujet" [clearOnEdit]="true" rows="10" spellcheck="true">
+                    <ion-textarea minlength="15" ngModel name="sujet" #sujet="ngModel"  [value]="projet?.sujet" [clearOnEdit]="true" rows="10" spellcheck="true">
                       <ion-note  *ngIf="sujet.touched&&!sujet.valid">Les information donnes ici et tres important pour lequipe et pour le chefe lui meme</ion-note>
                     </ion-textarea>
                   </ion-col>
@@ -96,7 +96,7 @@
                   <ion-col>
                      <ion-list>
                       <ion-item *ngFor="let newtache of taches"><ion-icon name="checkmark-done-circle-outline"></ion-icon>{{newtache.title}}
-                        <ion-icon style="float: right;" name="close-circle-outline" ></ion-icon></ion-item>
+                        <ion-icon slot="end" color="danger" name="close-circle-outline" (click)="showAlert(newtache)"></ion-icon></ion-item>
                      </ion-list>
                   </ion-col>
                 </ion-row>

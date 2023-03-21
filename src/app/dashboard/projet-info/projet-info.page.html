@@ -29,7 +29,7 @@
       </ion-col>
       <ion-col>
         <h3>Taches:</h3>
-        <ion-item  lines="none" *ngFor="let tache of projet?.taches;let i = index;"> <ion-checkbox [(ngModel)]="tache.isdone"   slot="start" (click)="showAlert(tache,i)" ></ion-checkbox>
+        <ion-item  lines="none" *ngFor="let tache of projet?.taches;let i = index;"> <ion-checkbox [(ngModel)]="tache.isdone"   slot="start" (click)="showAlert(tache,i)"  [disabled]="!user.authorisations.termination_des_taches"></ion-checkbox>
           <ion-label *ngIf="!tache.isdone">{{tache.title}}</ion-label>
           <del *ngIf="tache.isdone"><ion-label >{{tache.title}}</ion-label></del>
         </ion-item>

@@ -15,21 +15,12 @@ export class StatsPage implements OnInit {
   G:number  =0
   N:number  =0
   projets!:projet[]
-  progress:number=0
+
  
 
 
   
-  linecharts ={
-    labels:["not start","In progress","completed","behind schedule"],
-    datasets:[
-      {
-        data:[48,44,18,18],
 
-      }
-    ]
-
-   }
 
    
 
@@ -64,7 +55,7 @@ export class StatsPage implements OnInit {
           if (projet.status == 'Not started') {
             
             this.N = this.N+1
-             this.progress = progress
+          
           }
           
            if(projet.status == 'Completed'){
@@ -87,7 +78,7 @@ export class StatsPage implements OnInit {
       console.log(this.P)
      this.projets=projets
     this.rederchartbar(this.N,this.G,this.T,this.P)
-    this.rederchartline(this.N,this.G,this.T,this.P)
+
     this.rederchartzeg(this.N,this.G,this.T,this.P)
 
     })
@@ -101,21 +92,27 @@ rederchartbar(N:number,G:number,T:number,P:number){
     data: {
       labels: ['Not started', 'In progress', 'Completed', 'pass the date'],
       datasets: [{
-        label: '# of Votes',
+        label: 'status',
         data: [N, G, T, P],
-        fill:true,
-        borderWidth: 1,
-        backgroundColor: [
+        borderWidth: 2,
+        borderColor:[
           '#3661EC',
           '#FDA349',
           '#55ad48',
           '#ff0404'
-        ]
+        ],
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        pointBackgroundColor:[
+          '#3661EC',
+          '#FDA349',
+          '#55ad48',
+          '#ff0404'
+        ],
+        pointBorderColor: '#fff',
+        pointRadius: 10,
+        pointHoverRadius: 17
 
-      },{
-        label:"jdid",
-        data:[14,4,2,4]
-      }]
+      },]
     },
     options: {
    
@@ -133,40 +130,7 @@ rederchartbar(N:number,G:number,T:number,P:number){
     }
   });
 }
-rederchartline(N:number,G:number,T:number,P:number){
 
-  const chart = new Chart('charline', {
-    type: 'pie',
-    data: {
-      labels: ['Not started', 'In progress', 'Completed', 'pass the date'],
-      datasets: [{
-        label: '# of Votes',
-        data: [N, G, T, P],
-        borderWidth: 1,
-
-        backgroundColor: [
-          '#3661EC',
-          '#FDA349',
-          '#55ad48',
-          '#ff0404'
-        ]
-      }]
-    },
-    options: {
-      plugins:{
-        colors: {
-          enabled: true
-        }
-      },
-     
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-}
 rederchartzeg(N:number,G:number,T:number,P:number){
 
   const chart = new Chart('charzeg', {
@@ -183,21 +147,19 @@ rederchartzeg(N:number,G:number,T:number,P:number){
           '#55ad48',
           '#ff0404'
         ]
+
       }]
     },
     options: {
+      aspectRatio: 3,
       plugins:{
         colors: {
           enabled: true
+        }, legend: {
+          position: 'right'
         }
         
       },
-     
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
     }
   });
 }
