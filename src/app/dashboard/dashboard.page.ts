@@ -23,7 +23,8 @@ export class DashboardPage implements OnInit {
    termination_des_taches!:boolean | undefined
    suprimer_des_taches!:boolean | undefined
    gestion_des_utilisateur!:boolean |undefined
-  
+   p:number = 1
+   totalpage :number = 10
    projets!:projet[];
    search_result!:projet[];
    columns = [{ prop: 'Title' }, { name: 'date_debut' }, { name: 'date_fin' },{ name: 'status' }];

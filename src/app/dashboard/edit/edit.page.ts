@@ -64,17 +64,10 @@ export class EditPage implements OnInit {
         projet.date_fin = new Date(projet.date_fin).getTime();
         // const currentDate = new Date().getTime();
         // const daysUntilDeadline = Math.ceil((projet.date_fin - currentDate) / (1000 * 60 * 60 * 24));
-        projet.equipe=this.equipe
-        console.log(this.taches)
-        projet.taches=this.taches
-        console.log(projet.taches)
+          projet.equipe=this.equipe
+          projet.taches=this.taches
 
 
-
-        
-
-
-        
           const currentDate = new Date();
           const totalTime = projet.date_fin - projet.date_debut;
           const elapsed = currentDate.getTime() - projet.date_debut;
@@ -89,19 +82,16 @@ export class EditPage implements OnInit {
   
           const progress = elapsed / totalTime;
           console.log(progress)
-          if (elapsed <= 0) {
+          if (progress <= 0) {
             projet.status = 'Not started';
             
           } else if (progress >= 1) {
             projet.status = 'Behind schedule';
             
            } 
-          else if (progress <= 0.6) {
+          else if (progress <= 1 && progress > 0) {
             projet.status = 'In progress';
            
-          } else {
-            projet.status = 'Completed';
-            
           }
           console.log(projet.status)
     this.service.updateprojet(projet)

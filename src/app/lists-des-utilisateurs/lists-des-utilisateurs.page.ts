@@ -11,6 +11,7 @@ import { user } from '../dashboard/auth.service';
 export class ListsDesUtilisateursPage implements OnInit {
   users!:user[]
   user1!:user;
+  p:number =1
   ajouter_un_projet!:boolean 
   modidier_un_projet!:boolean
   suprimer_un_projet!:boolean

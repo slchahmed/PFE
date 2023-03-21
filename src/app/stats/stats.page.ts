@@ -90,7 +90,7 @@ rederchartbar(N:number,G:number,T:number,P:number){
   const chart = new Chart('charbar', {
     type: 'line',
     data: {
-      labels: ['Not started', 'In progress', 'Completed', 'pass the date'],
+      labels: ['pas commencé', 'En cours', 'Complété', 'passer la date'],
       datasets: [{
         label: 'status',
         data: [N, G, T, P],
@@ -136,7 +136,7 @@ rederchartzeg(N:number,G:number,T:number,P:number){
   const chart = new Chart('charzeg', {
     type: 'doughnut',
     data: {
-      labels: ['Not started', 'In progress', 'Completed', 'pass the date'],
+      labels: ['pas commencé', 'En cours', 'Complété', 'passer la date'],
       datasets: [{
         label: '# of Votes',
         data: [N, G, T, P],

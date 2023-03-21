@@ -58,27 +58,17 @@ export class AddPage implements OnInit {
   
           const progress = elapsed / totalTime;
   
-          if (elapsed <= 0) {
+          if (progress <= 0) {
             projet.status = 'Not started';
             
           } else if (progress >= 1) {
             projet.status = 'Behind schedule';
             
            } 
-          else if (progress <= 0.6) {
+          else if (progress <= 1 && progress >0 ) {
             projet.status = 'In progress';
            
           } 
-          
-       
-
-
-
-
-
-
-
-
         this.projetservice.addprojet(projet)
         this.router.navigateByUrl('/dashboard')
 
@@ -96,13 +86,12 @@ export class AddPage implements OnInit {
   }
   addtache() {
     if (this.title) {
-      this.newtache.title= this.title
-      this.taches.push(this.newtache);
-      console.log(this.newtache)
+  
+      const newTache = {title: this.title, isdone: false};
+      this.taches.push(newTache);
+   
       this.title=''
-      console.log(this.equipe)
     }
-    console.log(this.taches)
   }
   
     async showAlert() {

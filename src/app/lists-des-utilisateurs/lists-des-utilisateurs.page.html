@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="modifier_un_utilisateur">
+<ion-content color="moud" *ngIf="modifier_un_utilisateur">
   <ion-grid color="dark">
     <ion-row>
       <ion-col offset-md="2" size-md="8">
@@ -40,7 +40,7 @@
                     <ion-col>email</ion-col>
                   </ion-row>
                 <div class="overflow">
-                <ion-row class="rows_data" *ngFor="let user of search_result">
+                <ion-row class="rows_data" *ngFor="let user of search_result | paginate: { itemsPerPage: 6, currentPage: p }">
                   <ion-item-sliding class="slider">
                     <ion-item-options side="start">
                       <!-- <ion-item-option style="background: #2d38d3;" [routerLink]="[user.id]"><ion-icon name="eye-outline"></ion-icon></ion-item-option> -->
@@ -61,19 +61,24 @@
                   
                 </ion-row>
               </div>
+            
               </ion-grid>
           </ion-list> 
         </ion-col>
         </ion-row>
         </div>
+        <div class="ion-text-center">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
-<ion-grid>
+<ion-grid  *ngIf="!modifier_un_utilisateur">
   <ion-row class="ion-text-center">
     <ion-col>
-      <div class="ion-text-center" style="font-weight: bolder;padding: 20px;"  *ngIf="!modifier_un_utilisateur">
+      <div class="ion-text-center" style="font-weight: bolder;padding: 20px;" >
        
 
         vous n'avez pas la bonne permission,<ion-icon name="key-outline"></ion-icon> vous devez consulter votre administrateur

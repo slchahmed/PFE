@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination'; 
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,7 +14,8 @@ import { ListsDesUtilisateursPage } from './lists-des-utilisateurs.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ListsDesUtilisateursPageRoutingModule
+    ListsDesUtilisateursPageRoutingModule,
+    NgxPaginationModule
   ],
   declarations: [ListsDesUtilisateursPage]
 })

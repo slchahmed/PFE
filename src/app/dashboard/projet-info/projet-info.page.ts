@@ -31,7 +31,7 @@ export class ProjetInfoPage implements OnInit {
         projet['badgeColor'] = 'blue';
        
       }
-       if ( projet['status'] == 'behind schedule') {
+       if ( projet['status'] == 'Behind schedule') {
         
         projet['badgeColor'] = '#ff0404';
      
