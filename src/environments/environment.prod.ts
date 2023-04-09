@@ -1,12 +1,12 @@
 export const environment = {
   firebase: {
-    projectId: 'projet-fin-detude-1dc55',
-    appId: '1:1027579593433:web:96cd926334dfc366adf4c8',
-    storageBucket: 'projet-fin-detude-1dc55.appspot.com',
-    apiKey: 'AIzaSyBxxHrjpUWeWNe9-xzReYbTYdurIsgfV7Q',
-    authDomain: 'projet-fin-detude-1dc55.firebaseapp.com',
-    messagingSenderId: '1027579593433',
-    measurementId: 'G-4DTHQZGNQB',
+    apiKey: "AIzaSyDC1zyG4jZY2MtMucyR1mY0Qcz3zWLOUOU",
+    authDomain: "projet-fin-9feea.firebaseapp.com",
+    projectId: "projet-fin-9feea",
+    storageBucket: "projet-fin-9feea.appspot.com",
+    messagingSenderId: "430291873874",
+    appId: "1:430291873874:web:c24ca098755e455f862f8b",
+    measurementId: "G-VLZ4CCE01S"
   },
   production: true,
 };
