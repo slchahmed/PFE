@@ -88,6 +88,7 @@
         <div class="listgauche">
            <ion-datetime class="ion-datetime1" 
            #datetime 
+           presentation="date"
            (ionChange)="list_proj(datetime?.value)"></ion-datetime>
         </div>
       </ion-col>
@@ -124,30 +125,37 @@
                     <ion-col>Titre</ion-col>
                     <ion-col>Date-debut</ion-col>
                     <ion-col>Date-fin</ion-col>
-                    <ion-col>status</ion-col>
+                    <ion-col>état</ion-col>
+                    <ion-col size="4"><span style="margin-left: 31%;">CRUD</span></ion-col>
                   </ion-row>
                 <div class="overflow">
-                <ion-row class="rows_data" *ngFor="let projet of search_result| paginate: { itemsPerPage: 4, currentPage: p }">
-                  <ion-item-sliding class="slider">
+                <ion-row class="rows_data list_item" *ngFor="let projet of search_result| paginate: { itemsPerPage: 4, currentPage: p }">
+                  <!-- <ion-item-sliding class="slider">
                     <ion-item-options side="start">
                       <ion-item-option style="background: #2d38d3;" [routerLink]="[projet.id]"><ion-icon name="eye-outline"></ion-icon></ion-item-option>
                       <ion-item-option *ngIf="modidier_un_projet"  style="background: #3BAE74;" (click)="cheked(projet)"><ion-icon name="checkmark-done-outline"></ion-icon></ion-item-option>
-                    </ion-item-options>
+                    </ion-item-options> -->
                 
-                    <ion-item class="list_item" lines="none" style=" cursor:e-resize;">
-                        <ion-col>{{projet.Titre}}</ion-col>
-                        <ion-col>{{projet.date_debut}}</ion-col>
-                        <ion-col>{{projet.date_fin}}</ion-col>
-                        <ion-col><ion-badge [style.background]="projet.badgeColor" [style.color]="projet.badgeColor">.</ion-badge>
-                        </ion-col>
-                    
-                    </ion-item>
+                   
+                     
+                        
+                        <ion-col class="row-info">{{projet.Titre}}</ion-col>
+                        <ion-col class="row-info">{{projet.date_debut}}</ion-col>
+                        <ion-col class="row-info">{{projet.date_fin}}</ion-col>
+                        <ion-col class="row-info"><ion-badge class="status-badge" [style.background]="projet.badgeColor" [style.color]="projet.badgeColor">.</ion-badge></ion-col>
+
+                        <ion-col size="4"><ion-badge style="background: #BED5FF;cursor: pointer;" class='crud' [routerLink]="['edit',projet.id]"><ion-badge class='crud-e'><ion-icon name="brush-outline"></ion-icon></ion-badge></ion-badge>
+                        <ion-badge style="background: #FFC1C9;cursor: pointer;"  class='crud' (click)="ondelete(projet)"><ion-badge class='crud-e' color="danger"><ion-icon name="trash-outline"></ion-icon></ion-badge></ion-badge>
+                        <ion-badge style="background: #D2D5FF;cursor: pointer;" class='crud' [routerLink]="[projet.id]"><ion-badge class='crud-e' style="background: #2d38d3;"><ion-icon name="eye-outline"></ion-icon></ion-badge></ion-badge>
+                        <ion-badge style="background: #d5f3db;cursor: pointer;" class='crud'  (click)="cheked(projet)"><ion-badge class='crud-e' style="background: #3BAE74;"><ion-icon name="checkmark-done-outline"></ion-icon></ion-badge></ion-badge></ion-col>
+                  
+                   
                 
-                    <ion-item-options side="end">
+                    <!-- <ion-item-options side="end">
                       <ion-item-option *ngIf="modidier_un_projet"  [routerLink]="['edit',projet.id]"><ion-icon name="brush-outline"></ion-icon></ion-item-option>
                       <ion-item-option *ngIf="suprimer_un_projet"  color="danger"  (click)="ondelete(projet)"><ion-icon name="trash-outline"></ion-icon></ion-item-option>
                     </ion-item-options>
-                  </ion-item-sliding>
+                  </ion-item-sliding> -->
                   
                 </ion-row>
                 

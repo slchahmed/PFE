@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService, user } from './auth.service';
 import { projet, ProjetService } from './projet.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,14 +34,14 @@ export class DashboardPage implements OnInit {
    F!:number   
    P!:number   
    passe_delai:number = 0
-  constructor(private auth:Auth,private serviceprojects:ProjetService,private router:Router,private firestore:Firestore) {
+  constructor(private auth:Auth,private serviceprojects:ProjetService,private router:Router,private firestore:Firestore, private alertcontroller:AlertController) {
    }
 
   ngOnInit() {
     this.getuser().subscribe(user=>{
       const chef = user
       this.user1 = chef[0]
-   
+     
       this.ajouter_un_projet=this.user1.authorisations?.ajouter_un_projet
       this.modidier_un_projet=this.user1.authorisations?.modidier_un_projet
       this.suprimer_un_projet=this.user1.authorisations?.suprimer_un_projet
@@ -59,7 +60,7 @@ export class DashboardPage implements OnInit {
      this.G=0
      this.F=0
      this.P=0
-     
+     this.passe_delai = 0
       for(let projet of projets){
         
          
@@ -130,8 +131,29 @@ export class DashboardPage implements OnInit {
  }
 
 
- ondelete(projet:projet){
-    this.serviceprojects.deleteprojet(projet)
+ async ondelete(projet:projet){
+    
+
+    const alert = await this.alertcontroller.create({
+      id: '1',
+      header:'improtant ! ',
+      subHeader: 'ce projet sera supprimé',
+      buttons:[{
+        text:'ok',
+        role:'confirm',
+        handler:()=>{
+          this.serviceprojects.deleteprojet(projet)
+        } 
+      },
+      {
+        text:'annuler',
+        role:'cancel',
+      }
+    ],
+    })
+   
+    await alert.present();
+  
  }
   
  cheked(projet:projet){
