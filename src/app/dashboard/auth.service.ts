@@ -4,9 +4,10 @@ import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 
 export interface user{
   id?:string;
+  ide?:string;
   nom:string;
   phone_number?:string;
-  photoURL?:string;
+  imgURL?:string;
   email:string;
   age?:number;
   authorisations:{
@@ -39,7 +40,7 @@ export class AuthService {
     }
 
   }
-  adduser(user:user){
+  adduser(user:user): Promise<any> {
     const projetsref = collection(this.firestore,'users');
     return addDoc(projetsref,user);
   }

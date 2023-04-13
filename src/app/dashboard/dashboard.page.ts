@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { collection, collectionData, Firestore, query, where } from '@angular/fire/firestore';
+import { collection, collectionData, doc, Firestore, query, where,updateDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService, user } from './auth.service';
@@ -14,7 +14,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class DashboardPage implements OnInit {
    user = this.auth.currentUser;
-   user1!:user;
+   user1!:user | undefined;
    ajouter_un_projet!:boolean  | undefined
    modidier_un_projet!:boolean | undefined
    suprimer_un_projet!:boolean | undefined
@@ -34,6 +34,9 @@ export class DashboardPage implements OnInit {
    F!:number   
    P!:number   
    passe_delai:number = 0
+   date_fin!:string
+   date_fins!:string[]
+   date_fins_temp:string[] = []
   constructor(private auth:Auth,private serviceprojects:ProjetService,private router:Router,private firestore:Firestore, private alertcontroller:AlertController) {
    }
 
@@ -41,7 +44,7 @@ export class DashboardPage implements OnInit {
     this.getuser().subscribe(user=>{
       const chef = user
       this.user1 = chef[0]
-     
+      // console.log(this.user1)
       this.ajouter_un_projet=this.user1.authorisations?.ajouter_un_projet
       this.modidier_un_projet=this.user1.authorisations?.modidier_un_projet
       this.suprimer_un_projet=this.user1.authorisations?.suprimer_un_projet
@@ -51,9 +54,10 @@ export class DashboardPage implements OnInit {
       this.termination_des_taches=this.user1.authorisations?.termination_des_taches
       this.suprimer_des_taches=this.user1.authorisations?.suprimer_des_taches
       this.gestion_des_utilisateur=this.user1.authorisations.gestion_des_utilisateur
-
     })
     
+    
+    // console.log(this.auth.currentUser)
     this.serviceprojects.getprojets().subscribe(projets =>{
     
      this.T=0
@@ -63,7 +67,7 @@ export class DashboardPage implements OnInit {
      this.passe_delai = 0
       for(let projet of projets){
         
-         
+       
          this.T=this.T+1
          projet.date_debut= new Date(projet.date_debut).getTime();
          projet.date_fin = new Date(projet.date_fin).getTime();
@@ -104,13 +108,22 @@ export class DashboardPage implements OnInit {
          } 
           if(projet.status == 'Completed'){
             projet.status = 'Completed';
-            projet.badgeColor = '#55ad48';
+            projet.badgeColor = '#3BAE74';
             this.F=this.F+1
+            
+ 
+         }
+          if(projet.status !== 'Completed'){
+           
+            
+            this.date_fin=this.formatdate(projet.date_fin).split('T')[0];
+            this.date_fins_temp.push(this.date_fin)
             
  
          }
          if (projet.status == 'behind schedule'){
           this.passe_delai=this.passe_delai + 1
+          
          }
      
         projet.date_debut = projet.date_debut.split(',')[0]; 
@@ -118,8 +131,8 @@ export class DashboardPage implements OnInit {
      
          
       }
-     
-      
+      this.date_fins = this.date_fins_temp
+      // console.log(this.date_fins)
       this.projets=projets;
       this.search_result=this.projets.slice()
     
@@ -176,5 +189,22 @@ export class DashboardPage implements OnInit {
   const q = query(usersRef, where("email", "==", usermail));
   return collectionData(q, { idField: 'id' })as unknown as Observable<user[]>
 }
+formatdate(date:string){
+    
+  const parts = date.split('/');
+  const year = parseInt(parts[2]);
+  const month = parseInt(parts[0]) < 10 ? `0${parts[0]}` : parts[0];
+  const day = parseInt(parts[1]) < 10 ? `0${parts[1]}` : parts[1];
+  const isoDate = new Date(`${year}-${month}-${day}`).toISOString();
+  return isoDate
+}
 
+updateuser(user:user){
+  user.ide = this.auth.currentUser?.uid
+  const userref = doc(this.firestore,`users/${user?.id}`);
+  return updateDoc(userref,{ide:user?.ide,nom:user?.nom,phone_number:user?.phone_number,authorisations:{ajouter_un_projet:user?.authorisations.ajouter_un_projet,modidier_un_projet:user?.authorisations.modidier_un_projet, suprimer_un_projet:user?.authorisations.suprimer_un_projet, ajouter_un_utilisateur:user?.authorisations.ajouter_un_utilisateur, modifier_un_utilisateur:user?.authorisations.modifier_un_utilisateur, suprimer_un_utilisateur:user?.authorisations.suprimer_un_utilisateur, termination_des_taches:user?.authorisations.termination_des_taches, suprimer_des_taches:user?.authorisations.suprimer_des_taches}})
+}
+lunch(){
+  this.updateuser(this.user1!)
+}
 }

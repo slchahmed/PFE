@@ -14,7 +14,8 @@ export class EditPage implements OnInit {
   equipe: string[] = [];
   newEquipeMember!: string;
   taches: {title?:string,isdone?:boolean}[] = [];
-
+  date_debut!:string
+  date_fin!:string
   newtache: {title:string,isdone:boolean} = {title:'',isdone:false};
   title!:string;
   id!:string
@@ -25,10 +26,12 @@ export class EditPage implements OnInit {
      this.id= paramap.get('id') as string
     })
     this.service.getprojetById(this.id).subscribe(res=>{
-      console.log(res['taches'])
       this.taches = []
+      this.date_debut=this.formatdate(res['date_debut']).split('.')[0]; 
+      this.date_fin=this.formatdate(res['date_fin']).split('.')[0];
+    
       this.projet = res as projet;
-
+    
       for(let i of this.projet?.equipe){
         
         if (i && !this.equipe.includes(i)) {
@@ -62,6 +65,7 @@ export class EditPage implements OnInit {
         projet.chef=this.auth.currentUser?.uid;
         projet.date_debut= new Date(projet.date_debut).getTime();
         projet.date_fin = new Date(projet.date_fin).getTime();
+       
         // const currentDate = new Date().getTime();
         // const daysUntilDeadline = Math.ceil((projet.date_fin - currentDate) / (1000 * 60 * 60 * 24));
           projet.equipe=this.equipe
@@ -93,7 +97,9 @@ export class EditPage implements OnInit {
             projet.status = 'In progress';
            
           }
-          console.log(projet.status)
+        projet.date_debut=  projet.date_debut.split(',')[0]
+         projet.date_fin= projet.date_fin.split(',')[0]
+         
     this.service.updateprojet(projet)
     this.router.navigateByUrl('/dashboard')
    }
@@ -143,6 +149,16 @@ export class EditPage implements OnInit {
    
     await alert.present();
   
+  }
+
+  formatdate(date:string){
+    
+    const parts = date.split('/');
+    const year = parseInt(parts[2]);
+    const month = parseInt(parts[0]) < 10 ? `0${parts[0]}` : parts[0];
+    const day = parseInt(parts[1]) < 10 ? `0${parts[1]}` : parts[1];
+    const isoDate = new Date(`${year}-${month}-${day}`).toISOString();
+    return isoDate
   }
 
 }

@@ -26,7 +26,7 @@ export class ListsDesUtilisateursPage implements OnInit {
     this.getuser().subscribe(user=>{
       const chef = user
       this.user1 = chef[0]
-      console.log(chef[0].authorisations.modidier_un_projet)
+      
       this.ajouter_un_projet= chef[0].authorisations.ajouter_un_projet
       this.modidier_un_projet=chef[0].authorisations.modidier_un_projet
       this.suprimer_un_projet=chef[0].authorisations.suprimer_un_projet
@@ -35,8 +35,6 @@ export class ListsDesUtilisateursPage implements OnInit {
       this.suprimer_un_utilisateur=chef[0].authorisations.suprimer_un_utilisateur
       this.termination_des_taches=chef[0].authorisations.termination_des_taches
       this.suprimer_des_taches=chef[0].authorisations.suprimer_des_taches
-      console.log(this.modidier_un_projet)
-      console.log(this.modifier_un_utilisateur)
     })
 
     

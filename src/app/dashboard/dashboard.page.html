@@ -4,14 +4,20 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Tableau de bord</ion-title>
-    <ion-buttons style="font-size: 30px; cursor:pointer;" slot="end" [routerLink]="['notifications']">
+    <ion-buttons style="font-size: 30px; cursor:pointer;margin-right: 20px;" slot="end" [routerLink]="['notifications']">
       <ion-badge color="danger">{{passe_delai}}</ion-badge>
       <ion-icon  name="notifications"></ion-icon>
+    </ion-buttons>
+    <ion-buttons style="cursor:pointer;height: 20px;" slot="end" [routerLink]="['../user-profile',user?.email]">
+      <ion-avatar style="height: 40px;width: 40px;" slot="start">
+        <img alt="Silhouette of a person's head" [src]="user1?.imgURL" />
+      </ion-avatar>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="moud">
+
   <ion-grid class="body">
     <ion-row>
       <!-- cards columns -->
@@ -86,10 +92,15 @@
       <!-- list columns ave checkbox-->
       <ion-col size-md="2" >
         <div class="listgauche">
-           <ion-datetime class="ion-datetime1" 
+           <ion-datetime
+           class="ion-datetime1" 
            #datetime 
            presentation="date"
-           (ionChange)="list_proj(datetime?.value)"></ion-datetime>
+           multiple="true"
+           color="danger"
+           [value]="date_fins"
+           ></ion-datetime>
+           <!-- (click)="list_proj(datetime?.value)" -->
         </div>
       </ion-col>
     </ion-row>
@@ -144,10 +155,10 @@
                         <ion-col class="row-info">{{projet.date_fin}}</ion-col>
                         <ion-col class="row-info"><ion-badge class="status-badge" [style.background]="projet.badgeColor" [style.color]="projet.badgeColor">.</ion-badge></ion-col>
 
-                        <ion-col size="4"><ion-badge style="background: #BED5FF;cursor: pointer;" class='crud' [routerLink]="['edit',projet.id]"><ion-badge class='crud-e'><ion-icon name="brush-outline"></ion-icon></ion-badge></ion-badge>
-                        <ion-badge style="background: #FFC1C9;cursor: pointer;"  class='crud' (click)="ondelete(projet)"><ion-badge class='crud-e' color="danger"><ion-icon name="trash-outline"></ion-icon></ion-badge></ion-badge>
+                        <ion-col size="4"><ion-badge *ngIf="modidier_un_projet" style="background: #BED5FF;cursor: pointer;" class='crud' [routerLink]="['edit',projet.id]"><ion-badge class='crud-e'><ion-icon name="brush-outline"></ion-icon></ion-badge></ion-badge>
+                        <ion-badge *ngIf="suprimer_un_projet" style="background: #FFC1C9;cursor: pointer;"  class='crud' (click)="ondelete(projet)"><ion-badge class='crud-e' color="danger"><ion-icon name="trash-outline"></ion-icon></ion-badge></ion-badge>
                         <ion-badge style="background: #D2D5FF;cursor: pointer;" class='crud' [routerLink]="[projet.id]"><ion-badge class='crud-e' style="background: #2d38d3;"><ion-icon name="eye-outline"></ion-icon></ion-badge></ion-badge>
-                        <ion-badge style="background: #d5f3db;cursor: pointer;" class='crud'  (click)="cheked(projet)"><ion-badge class='crud-e' style="background: #3BAE74;"><ion-icon name="checkmark-done-outline"></ion-icon></ion-badge></ion-badge></ion-col>
+                        <ion-badge *ngIf="modidier_un_projet" style="background: #d5f3db;cursor: pointer;" class='crud'  (click)="cheked(projet)"><ion-badge class='crud-e' style="background: #3BAE74;"><ion-icon name="checkmark-done-outline"></ion-icon></ion-badge></ion-badge></ion-col>
                   
                    
                 

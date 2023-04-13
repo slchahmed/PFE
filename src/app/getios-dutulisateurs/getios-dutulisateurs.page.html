@@ -14,7 +14,7 @@
     </ion-card-header>
   
     <ion-card-content >
-      <form ngForm #f="ngForm" (submit)="register({email:f.value.email,password:f.value.pass})">
+      <form ngForm #f="ngForm" (submit)="register({email:f.value.email,password:f.value.pass},{nom:f.value.Nom,phone_number:f.value.telephone,email:f.value.email,authorisations:{ajouter_un_projet:f.value.ajouter_un_projet,modidier_un_projet:f.value.modidier_un_projet, suprimer_un_projet:f.value.suprimer_un_projet, ajouter_un_utilisateur:f.value.ajouter_un_utilisateur, modifier_un_utilisateur:f.value.modifier_un_utilisateur, suprimer_un_utilisateur:f.value.suprimer_un_utilisateur, termination_des_taches:f.value.termination_des_taches, suprimer_des_taches:f.value.suprimer_des_taches,gestion_des_utilisateur:f.value.gestion_des_utilisateur},password:f.value.pass})">
           <ion-grid>
             <ion-row>
               <ion-col style="height: auto;">
@@ -120,7 +120,7 @@
             <ion-row class="ion-text-center">
               <ion-col>
                 
-                <ion-button color="danger" fill="outline" type="submit" [disabled]="!f.valid" (click)="adduser({nom:f.value.Nom,phone_number:f.value.telephone,email:f.value.email,authorisations:{ajouter_un_projet:f.value.ajouter_un_projet,modidier_un_projet:f.value.modidier_un_projet, suprimer_un_projet:f.value.suprimer_un_projet, ajouter_un_utilisateur:f.value.ajouter_un_utilisateur, modifier_un_utilisateur:f.value.modifier_un_utilisateur, suprimer_un_utilisateur:f.value.suprimer_un_utilisateur, termination_des_taches:f.value.termination_des_taches, suprimer_des_taches:f.value.suprimer_des_taches,gestion_des_utilisateur:f.value.gestion_des_utilisateur},password:f.value.pass})">Ajouter un utilisateur</ion-button>
+                <ion-button color="danger" fill="outline" type="submit" [disabled]="!f.valid">Ajouter un utilisateur</ion-button>
               </ion-col>
             </ion-row>
           </ion-grid>

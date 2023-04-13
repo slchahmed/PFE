@@ -15,14 +15,20 @@ export class GetiosDutulisateursPage implements OnInit {
   curentuser = this.auth.currentUser
   password :number |undefined
   constructor(private firestore:Firestore,private auth:Auth,private loadingController: LoadingController,private alertController:AlertController,private authservice:AuthService,private router:Router) { }
-  async register(f:{email:any,password:any}){
+  async register(f:{email:any,password:any},F:user){
  
     const loading = await this.loadingController.create();
     await loading.present();
     const user =await this.authservice.register(f)
     await loading.dismiss();
-
+ 
+    console.log(user?.user)
+    F.ide = user?.user.uid
+    console.log(F)
+    
+    
     if(user) {
+    await this.adduser(F)
     await this.authservice.logout();
 
       await this.login({email:this.curentuser?.email,password:this.password})
@@ -42,15 +48,15 @@ export class GetiosDutulisateursPage implements OnInit {
     await alert.present();
   }
 
-  adduser(user:user){
-    this.authservice.adduser(user)
+  adduser(user:user): Promise<void>{
+   return this.authservice.adduser(user)
   }
 
   ngOnInit() {
     this.getuser().subscribe(res=>{
-      console.log(res)
+     
       // this.password = res[0].password
-      console.log(res[0].password)
+    
       this.password= res[0].password
     })
   }

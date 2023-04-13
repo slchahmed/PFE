@@ -72,10 +72,7 @@ export class StatsPage implements OnInit {
       
   
      }
-      console.log(this.N)
-      console.log(this.G)
-      console.log(this.T)
-      console.log(this.P)
+    
      this.projets=projets
     this.rederchartbar(this.N,this.G,this.T,this.P)
 

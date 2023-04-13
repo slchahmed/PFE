@@ -52,7 +52,7 @@ export class ProjetInfoPage implements OnInit {
         this.user = user[0] as user
       
         this.chef = this.user.nom
-        console.log(this.user)
+     
         this.projet = projet as projet;
       })
    

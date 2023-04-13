@@ -45,9 +45,16 @@ const routes: Routes = [
     path: 'getios-dutulisateurs',
     loadChildren: () => import('./getios-dutulisateurs/getios-dutulisateurs.module').then( m => m.GetiosDutulisateursPageModule),
     ...canActivate(redirectToLogin)
-  },  {
+  },
+  {
     path: 'lists-des-utilisateurs',
-    loadChildren: () => import('./lists-des-utilisateurs/lists-des-utilisateurs.module').then( m => m.ListsDesUtilisateursPageModule)
+    loadChildren: () => import('./lists-des-utilisateurs/lists-des-utilisateurs.module').then( m => m.ListsDesUtilisateursPageModule),
+    ...canActivate(redirectToLogin)
+  },
+  {
+    path: 'user-profile/:email',
+    loadChildren: () => import('./user-profile/user-profile.module').then( m => m.UserProfilePageModule),
+    ...canActivate(redirectToLogin)
   },
 
 

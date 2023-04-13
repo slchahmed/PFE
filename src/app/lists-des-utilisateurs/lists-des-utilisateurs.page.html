@@ -53,7 +53,7 @@
                       
                         <ion-col size="4"><ion-badge style="background: #BED5FF;cursor: pointer;" class='crud' [routerLink]="['edit',user.id]"><ion-badge class='crud-e'><ion-icon name="brush-outline"></ion-icon></ion-badge></ion-badge>
                           <ion-badge style="background: #FFC1C9;cursor: pointer;"  class='crud' (click)="ondelete(user)"><ion-badge class='crud-e' color="danger"><ion-icon name="trash-outline"></ion-icon></ion-badge></ion-badge>
-                          <ion-badge style="background: #D2D5FF;cursor: pointer;" class='crud' [routerLink]="[user.id]"><ion-badge class='crud-e' style="background: #2d38d3;"><ion-icon name="eye-outline"></ion-icon></ion-badge></ion-badge>
+                          <ion-badge style="background: #D2D5FF;cursor: pointer;" class='crud' [routerLink]="['../user-profile',user?.email]"><ion-badge class='crud-e' style="background: #2d38d3;"><ion-icon name="eye-outline"></ion-icon></ion-badge></ion-badge>
                         </ion-col>
                 
                     <!-- <ion-item-options side="end">
