@@ -12,7 +12,7 @@
         
         </ion-card-header>
       <ion-card-content class="ion-text-center  ion-padding">
-          <form ngForm #f="ngForm" (ngSubmit)="login({email:f.value.email,password:f.value.pass})">
+          <form ngForm #f="ngForm">
             <ion-item >
               <ion-icon name="mail-outline" color="primary"></ion-icon>
               <ion-label position="">Email</ion-label>
@@ -22,14 +22,14 @@
             <ion-note slot="error" color="danger" *ngIf="email.touched && email.errors?.['email']">Format d'email invalide</ion-note>
             <ion-item>
               <ion-icon name="bag-outline" color="primary"></ion-icon>
-              <ion-label position="">mot de passe</ion-label>
+              <ion-label position="">nouveau mot de passe</ion-label>
               <ion-input ngModel type="password" name="pass" #pass="ngModel" required minlength="8"></ion-input>
             </ion-item>
             <ion-note slot="error" color="danger" *ngIf="pass.touched &&pass.errors?.['required']">Mot de passe requis</ion-note>
             <ion-note slot="error" color="danger" *ngIf="pass.touched && pass.errors?.['minlength']">Le mot de passe doit comporter au moins 8 caractères</ion-note>            <div class="button">
-              <ion-button type="submit" [disabled]="!f.valid">Connection</ion-button>
+              <ion-button type="submit" [disabled]="!f.valid" (click)="passwordreset(f.value.email,f.value.pass)">Envoyer email de vérification</ion-button>
             </div>
-            <ion-note style="color: blue;" [routerLink]="['./reset-pass']">mot de passe oublier ? </ion-note>
+            <ion-note style="color: blue;" [routerLink]="['login']" >retourner à la page de connexion</ion-note>
           </form>
         </ion-card-content>
       </ion-card>

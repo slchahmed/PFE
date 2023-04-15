@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: LoginPage
+  },  {
+    path: 'reset-pass',
+    loadChildren: () => import('./reset-pass/reset-pass.module').then( m => m.ResetPassPageModule)
   }
+
 ];
 
 @NgModule({

@@ -137,6 +137,9 @@ export class DashboardPage implements OnInit {
       this.search_result=this.projets.slice()
     
     })
+
+    
+  
   }
   ionViewDidleave(){
     this.T=0

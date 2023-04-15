@@ -55,7 +55,7 @@
         <ion-col>{{T}}</ion-col>
       </ion-row>
       <ion-row >
-        <ion-col class="avatar"><ion-button color="danger" style="width: 280px;"><ion-icon name="trash-outline"></ion-icon>Suprimer le compte</ion-button></ion-col>
+        <ion-col class="avatar"><ion-button (click)="deleteacount()" color="danger" style="width: 280px;"><ion-icon name="trash-outline"></ion-icon>Suprimer le compte</ion-button></ion-col>
       </ion-row>
     </ion-grid>
 </ion-content>

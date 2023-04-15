@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Firestore, collection, collectionData, doc, query, where ,updateDoc} from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, query, where ,updateDoc, deleteDoc} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { user } from '../dashboard/auth.service';
 import { Auth } from '@angular/fire/auth';
 import { Storage, getDownloadURL, ref, uploadString } from '@angular/fire/storage';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
-import { LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { ProjetService, projet } from '../dashboard/projet.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -22,7 +22,7 @@ T:number =0
 G:number =0
 F:number =0
 P:number =0
-  constructor(private activerouter:ActivatedRoute,private auth:Auth,private firestore:Firestore,private storage:Storage,private loading:LoadingController,private serviceprojects:ProjetService) {}
+  constructor(private alertcontroller:AlertController,private activerouter:ActivatedRoute,private auth:Auth,private firestore:Firestore,private storage:Storage,private loading:LoadingController,private serviceprojects:ProjetService,private routerin:Router) {}
 
   ngOnInit() {
     this.activerouter.paramMap.subscribe(paramar =>{
@@ -97,5 +97,40 @@ P:number =0
     const q = query(projetsRef, where("chef", "==", userId));
     return collectionData(q, { idField: 'id' })as unknown as Observable<projet[]>
   }
-
+ async deleteacount(){
+    const alert = await this.alertcontroller.create({
+      id: '1',
+      header:'improtant ! ',
+      subHeader: 'ce compte sera supprimé',
+      buttons:[{
+        text:'ok',
+        role:'confirm',
+        handler:()=>{
+          this.deleteuser(this.user!)
+          .then(() => {
+            return this.auth.currentUser?.delete();
+          })
+          .then(() => {
+            this.routerin.navigateByUrl('login');
+            window.location.reload();
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+        } 
+      },
+      {
+        text:'annuler',
+        role:'cancel',
+      }
+    ],
+    })
+   
+    await alert.present();
+  
+  }
+  deleteuser(user:user){
+    const userref = doc(this.firestore,`users/${user.id}`);
+    return deleteDoc(userref);
+  }
 }

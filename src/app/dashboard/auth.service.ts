@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut ,sendPasswordResetEmail} from '@angular/fire/auth';
 import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 
 export interface user{
@@ -58,5 +58,10 @@ export class AuthService {
   logout() {
     return signOut(this.auth);
   }
+  resetPassword(email: string) {
+ 
+    return sendPasswordResetEmail(this.auth,email);
+  }
+  
 }
 // fdf

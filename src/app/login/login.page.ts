@@ -36,5 +36,9 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
-
+passwordreset(email:string){
+  this.authservice.resetPassword(email)
+    .then(() => console.log('Password reset email sent'))
+    .catch((error) => console.log(error));
+}
 }
