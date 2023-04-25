@@ -1,0 +1,193 @@
+<ion-header>
+  <ion-toolbar color="primary" >
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tableau de bord</ion-title>
+    <ion-buttons style="font-size: 30px; cursor:pointer;margin-right: 20px;" slot="end" [routerLink]="['notifications']">
+      <ion-badge color="danger">{{passe_delai}}</ion-badge>
+      <ion-icon  name="notifications"></ion-icon>
+    </ion-buttons>
+    <ion-buttons style="cursor:pointer;height: 20px;" slot="end" [routerLink]="['../user-profile',user?.email]">
+      <ion-avatar style="height: 40px;width: 40px;" slot="start">
+        <img alt="Silhouette of a person's head" [src]="user1?.imgURL" />
+      </ion-avatar>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="moud">
+
+  <ion-grid class="body">
+    <ion-row>
+      <!-- cards columns -->
+      <ion-col size-md="6" offset-md="2">
+        <ion-grid>
+          <ion-row>
+            <ion-col >
+              <!-- ajouter card  -->
+              <ion-card class="projet-retarde">
+                <ion-row>
+                  <ion-col>
+                    <ion-card-header >
+                      <ion-card-title>Projets en retard</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <div class="avatar4"><div class="jhon">{{P}}</div></div>
+                    </ion-card-content>
+                  </ion-col>
+                </ion-row>  
+              </ion-card>  
+            </ion-col>
+            <ion-col>
+              <!-- projet en cours card  -->
+              <ion-card class="projet-cour">
+                <ion-row>
+                  <ion-col>
+                    <ion-card-header >
+                      <ion-card-title>Projet en cours</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <div class="avatar"><div class="jhon">{{G}}</div></div>
+                    </ion-card-content>
+                  </ion-col>
+                </ion-row>  
+              </ion-card>             
+            </ion-col>
+          </ion-row> 
+          <ion-row>
+            <ion-col>
+              <!-- total de projet  card  -->
+              <ion-card class="projet-total">
+                <ion-row>
+                  <ion-col>
+                    <ion-card-header >
+                      <ion-card-title>Totalité de projets</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <div class="avatar2"> {{T}}</div>
+                    </ion-card-content>
+                  </ion-col>
+                </ion-row>  
+              </ion-card>      
+              <!-- tach non terminer  -->
+            </ion-col>
+            <ion-col>
+              <ion-card class="projet-ter">
+                <ion-row>
+                  <ion-col>
+                    <ion-card-header >
+                      <ion-card-title> Projets terminés</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <div class="avatar3">{{F}}</div>
+                    </ion-card-content>
+                  </ion-col>
+                </ion-row>  
+              </ion-card>      
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+      <!-- list columns ave checkbox-->
+      <ion-col size-md="2" >
+        <div class="listgauche">
+           <ion-datetime
+           class="ion-datetime1" 
+           #datetime 
+           presentation="date"
+           multiple="true"
+           color="danger"
+           [value]="date_fins"
+           ></ion-datetime>
+           <!-- (click)="list_proj(datetime?.value)" -->
+        </div>
+      </ion-col>
+    </ion-row>
+    <!-- liste avec overflow  -->
+  <ion-grid color="dark">
+    <ion-row>
+      <ion-col offset-md="2">
+        <div class="overflow_container">
+          <ion-row>
+            <ion-col size="3">
+              <h3>Projets</h3>
+            </ion-col>
+            <ion-col size="1">
+              <ion-buttons >
+                <div class="add" color="primary">
+                  <ion-button   *ngIf="ajouter_un_projet"   [routerLink]="['add']">Ajouter
+                    <ion-icon name="add"></ion-icon>
+                  </ion-button>
+                </div>
+              </ion-buttons>
+            </ion-col>
+            <ion-col size="6" offset="2">
+              <ion-searchbar placeholder="Recherche"  color="Medium" ngModel #value='ngModel' [debounce]="" (ionChange)="handleChange(value.value)"></ion-searchbar>
+            </ion-col> 
+          </ion-row>
+          <ion-row>
+            <ion-col>
+          <ion-list>
+          
+              <ion-grid>
+                
+                  <ion-row class="titles">
+                    <ion-col>Titre</ion-col>
+                    <ion-col>Date-debut</ion-col>
+                    <ion-col>Date-fin</ion-col>
+                    <ion-col>état</ion-col>
+                    <ion-col size="4"><span style="margin-left: 31%;">CRUD</span></ion-col>
+                  </ion-row>
+                <div class="overflow">
+                <ion-row class="rows_data list_item" *ngFor="let projet of search_result| paginate: { itemsPerPage: 4, currentPage: p }">
+                  <!-- <ion-item-sliding class="slider">
+                    <ion-item-options side="start">
+                      <ion-item-option style="background: #2d38d3;" [routerLink]="[projet.id]"><ion-icon name="eye-outline"></ion-icon></ion-item-option>
+                      <ion-item-option *ngIf="modidier_un_projet"  style="background: #3BAE74;" (click)="cheked(projet)"><ion-icon name="checkmark-done-outline"></ion-icon></ion-item-option>
+                    </ion-item-options> -->
+                
+                   
+                     
+                        
+                        <ion-col class="row-info">{{projet.Titre}}</ion-col>
+                        <ion-col class="row-info">{{projet.date_debut}}</ion-col>
+                        <ion-col class="row-info">{{projet.date_fin}}</ion-col>
+                        <ion-col class="row-info"><ion-badge class="status-badge" [style.background]="projet.badgeColor" [style.color]="projet.badgeColor">.</ion-badge></ion-col>
+
+                        <ion-col size="4"><ion-badge *ngIf="modidier_un_projet" style="background: #BED5FF;cursor: pointer;" class='crud' [routerLink]="['edit',projet.id]"><ion-badge class='crud-e'><ion-icon name="brush-outline"></ion-icon></ion-badge></ion-badge>
+                        <ion-badge *ngIf="suprimer_un_projet" style="background: #FFC1C9;cursor: pointer;"  class='crud' (click)="ondelete(projet)"><ion-badge class='crud-e' color="danger"><ion-icon name="trash-outline"></ion-icon></ion-badge></ion-badge>
+                        <ion-badge style="background: #D2D5FF;cursor: pointer;" class='crud' [routerLink]="[projet.id]"><ion-badge class='crud-e' style="background: #2d38d3;"><ion-icon name="eye-outline"></ion-icon></ion-badge></ion-badge>
+                        <ion-badge *ngIf="modidier_un_projet" style="background: #d5f3db;cursor: pointer;" class='crud'  (click)="cheked(projet)"><ion-badge class='crud-e' style="background: #3BAE74;"><ion-icon name="checkmark-done-outline"></ion-icon></ion-badge></ion-badge></ion-col>
+                  
+                   
+                
+                    <!-- <ion-item-options side="end">
+                      <ion-item-option *ngIf="modidier_un_projet"  [routerLink]="['edit',projet.id]"><ion-icon name="brush-outline"></ion-icon></ion-item-option>
+                      <ion-item-option *ngIf="suprimer_un_projet"  color="danger"  (click)="ondelete(projet)"><ion-icon name="trash-outline"></ion-icon></ion-item-option>
+                    </ion-item-options>
+                  </ion-item-sliding> -->
+                  
+                </ion-row>
+                
+
+              </div>
+              </ion-grid>
+          </ion-list> 
+        </ion-col>
+        </ion-row>
+        <ion-row class="ion-text-center">
+         <ion-col class="ion-text-center">
+           <div class="ion-text-center">
+             <pagination-controls (pageChange)="p = $event"></pagination-controls>
+ 
+           </div>
+
+         </ion-col>
+        </ion-row>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,52 @@
+
+
+<ion-content color="moud">
+  <ion-grid>
+    <div class="signup">
+        <ion-card>
+          <ion-card-header class="ion-text-center">
+            <ion-card-title class="title"><strong>Inscription</strong></ion-card-title>
+            <img src="https://www.mediafire.com/convkey/0c80/mwvqjk5cql8u609zg.jpg" alt="">
+          </ion-card-header>
+        
+          <ion-card-content class="ion-text-center  ion-padding">
+            <form ngForm #f="ngForm" (ngSubmit)="register({email:f.value.email,password:f.value.pass})">
+              <ion-item >
+                <ion-icon name="mail"></ion-icon>
+                <ion-label position="">Email</ion-label>
+                <ion-input ngModel type="text" name="email" #email="ngModel" required></ion-input>
+              </ion-item>
+              <ion-note slot="error" *ngIf="(email.dirty && email.touched &&email.errors)">email rquired</ion-note>
+              <ion-item >
+                <ion-icon name="bag"></ion-icon>
+                <ion-label position="">mot de pass</ion-label>
+                <ion-input ngModel type="password" name="pass" #pass="ngModel" required minlength="8"></ion-input>
+              </ion-item>
+              <ion-note *ngIf="(pass.errors&&pass.touched&&pass.dirty)">mot de pass invalid</ion-note>
+              <ion-item >
+                <ion-icon name="bag-check"></ion-icon>
+                <ion-label position=""> confirm mot de pass</ion-label>
+                <ion-input  type="password" name="passconf"  required minlength="8"></ion-input>
+              </ion-item>
+              <ion-item >
+                <ion-icon name="person"></ion-icon>
+                <ion-label position=""> nom</ion-label>
+                <ion-input ngModel type="password" name="nom" #nom="ngModel" required minlength="8"></ion-input>
+              </ion-item>
+              <ion-item >
+                <ion-icon name="call"></ion-icon>
+                <ion-label position="">Numero de telephone</ion-label>
+                <ion-input ngModel type="text" name="phone" #phone="ngModel"  required minlength="8"></ion-input>
+              </ion-item>
+              <ion-item >
+                <ion-icon name="battery-half-outline"></ion-icon>
+                <ion-label position="">age</ion-label>
+                <ion-input ngModel #age="ngModel" type="number" name="age"  required minlength="8"></ion-input>
+              </ion-item>
+              <!-- <ion-button type="submit" (click)="adduser({nom:f.value.nom,phone_number:f.value.phone,email:f.value.email,age:f.value.age})">Connection</ion-button> -->
+            </form>
+            </ion-card-content>
+        </ion-card>
+      </div>
+  </ion-grid>
+</ion-content>

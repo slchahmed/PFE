@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>lists-des-utilisateurs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="moud" *ngIf="modifier_un_utilisateur">
+  <ion-grid color="dark">
+    <ion-row>
+      <ion-col offset-md="2" size-md="8">
+        <div class="overflow_container">
+          <ion-row>
+            <ion-col size="3">
+              <h3>utilisateurs</h3>
+            </ion-col>
+            <ion-col size="1">
+              <ion-buttons >
+                <div class="add">
+                  <ion-button *ngIf="ajouter_un_utilisateur"  style="font-size: 18px;" [routerLink]="['getios-dutulisateurs']">ajouter
+                    <ion-icon name="person-add-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </ion-buttons>
+            </ion-col>
+            <ion-col size="6" offset="2">
+              <ion-searchbar  color="Medium" ngModel #value='ngModel' [debounce]="" (ionChange)="handleChange(value.value)"></ion-searchbar>
+            </ion-col> 
+          </ion-row>
+          <ion-row>
+            <ion-col>
+          <ion-list>
+          
+              <ion-grid>
+                
+                  <ion-row class="titles">
+                    <ion-col>Nom</ion-col>
+                    <ion-col>email</ion-col>
+                    <ion-col size="4"><span style="margin-left: 31%;">Actions</span></ion-col>
+                  </ion-row>
+                <div class="overflow">
+                <ion-row class="rows_data list_item" *ngFor="let user of search_result | paginate: { itemsPerPage: 6, currentPage: p }">
+                  <!-- <ion-item-sliding class="slider">
+                    <ion-item-options side="start"> -->
+                      <!-- <ion-item-option style="background: #2d38d3;" [routerLink]="[user.id]"><ion-icon name="eye-outline"></ion-icon></ion-item-option> -->
+                    <!-- </ion-item-options> -->
+                
+                    
+                        <ion-col>{{user.nom}}</ion-col>
+                        <ion-col>{{user.email}}</ion-col>
+                      
+                        <ion-col size="4"><ion-badge style="background: #BED5FF;cursor: pointer;" class='crud' [routerLink]="['edit',user.id]"><ion-badge class='crud-e'><ion-icon name="brush-outline"></ion-icon></ion-badge></ion-badge>
+                          <ion-badge style="background: #FFC1C9;cursor: pointer;"  class='crud' (click)="ondelete(user)"><ion-badge class='crud-e' color="danger"><ion-icon name="trash-outline"></ion-icon></ion-badge></ion-badge>
+                          <ion-badge style="background: #D2D5FF;cursor: pointer;" class='crud' [routerLink]="['../user-profile',user?.email]"><ion-badge class='crud-e' style="background: #2d38d3;"><ion-icon name="eye-outline"></ion-icon></ion-badge></ion-badge>
+                        </ion-col>
+                
+                    <!-- <ion-item-options side="end">
+                      <ion-item-option *ngIf="modifier_un_utilisateur" [routerLink]="['edit',user.id]"><ion-icon name="brush-outline"></ion-icon></ion-item-option>
+                      <ion-item-option *ngIf="suprimer_un_utilisateur" color="danger"  (click)="ondelete(user)"><ion-icon name="trash-outline"></ion-icon></ion-item-option>
+                    </ion-item-options>
+                  </ion-item-sliding> -->
+                  
+                </ion-row>
+              </div>
+            
+              </ion-grid>
+          </ion-list> 
+        </ion-col>
+        </ion-row>
+        </div>
+        <div class="ion-text-center">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-grid  *ngIf="!modifier_un_utilisateur">
+  <ion-row class="ion-text-center">
+    <ion-col>
+      <div class="ion-text-center" style="font-weight: bolder;padding: 20px;" >
+       
+
+        vous n'avez pas la bonne permission,<ion-icon name="key-outline"></ion-icon> vous devez consulter votre administrateur
+            <div style="font-size: 80px;">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+            </div>
+      
+      
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>

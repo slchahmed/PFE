@@ -1,0 +1,147 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>ADD</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>new project</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content >
+      <form ngForm #f="ngForm" (submit)="register({email:f.value.email,password:f.value.pass},{nom:f.value.Nom,phone_number:f.value.telephone,email:f.value.email,authorisations:{ajouter_un_projet:f.value.ajouter_un_projet,modidier_un_projet:f.value.modidier_un_projet, suprimer_un_projet:f.value.suprimer_un_projet, ajouter_un_utilisateur:f.value.ajouter_un_utilisateur, modifier_un_utilisateur:f.value.modifier_un_utilisateur, suprimer_un_utilisateur:f.value.suprimer_un_utilisateur, termination_des_taches:f.value.termination_des_taches, suprimer_des_taches:f.value.suprimer_des_taches,gestion_des_utilisateur:f.value.gestion_des_utilisateur},password:f.value.pass})">
+          <ion-grid>
+            <ion-row>
+              <ion-col style="height: auto;">
+
+                <!-- Titre -->
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label position="floating">nom d'utilisateur</ion-label>
+                      <ion-input ngModel name="Nom" #Nom="ngModel" type="text" required minlenght="4"></ion-input>
+                    </ion-item>
+                    <ion-note color="danger" *ngIf="!Nom.valid&&Nom.touched">Nom et obligatoir</ion-note>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label position="floating">email d'utilisateur</ion-label>
+                      <ion-input ngModel name="email" #email="ngModel" type="text" required minlenght="4"></ion-input>
+                    </ion-item>
+                    <ion-note color="danger" *ngIf="!email.valid&&email.touched">email et obligatoir</ion-note>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label position="floating">mot de passe</ion-label>
+                      <ion-input ngModel name="pass" #pass="ngModel" type="password" required minlenght="8"></ion-input>
+                    </ion-item>
+                    <ion-note color="danger" *ngIf="!pass.valid&&pass.touched">mot de passe et obligatoir</ion-note>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label position="floating">Numero de telephone</ion-label>
+                      <ion-input ngModel name="telephone" #telephone="ngModel" type="number" required minlenght="8"></ion-input>
+                    </ion-item>
+                   </ion-col>
+                </ion-row>
+                
+              
+
+                <!-- roles grid  -->
+                
+                
+                <ion-row class="cheks">
+                  <ion-col>
+                    <ion-item>
+                      <ion-checkbox ngModel name="ajouter_un_projet" #ajouter_un_projet="ngModel" [ngModel]="false"></ion-checkbox>
+                      <ion-label>ajouter un projet</ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-checkbox ngModel name="modidier_un_projet" #modidier_un_projet="ngModel" [ngModel]="false"></ion-checkbox>
+                      <ion-label>modidier un projet</ion-label>
+
+                    </ion-item>
+                    <ion-item>
+                      <ion-checkbox ngModel name="suprimer_un_projet" #suprimer_un_projet="ngModel" [ngModel]="false"></ion-checkbox>
+                      <ion-label>suprimer un projet</ion-label>
+
+                    </ion-item>
+                    <ion-item>
+                      <ion-checkbox ngModel name="ajouter_un_utilisateur" #ajouter_un_utilisateur="ngModel" [ngModel]="false"></ion-checkbox>
+                      <ion-label>ajouter un utilisateur</ion-label>
+
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-checkbox ngModel name="modifier_un_utilisateur" #modifier_un_utilisateur="ngModel" [ngModel]="false"></ion-checkbox>
+                      <ion-label>modifier un utilisateur</ion-label>
+
+                    </ion-item>
+                    <ion-item>
+                      <ion-checkbox ngModel name="suprimer_un_utilisateur" #suprimer_un_utilisateur="ngModel" [ngModel]="false"></ion-checkbox>
+                      <ion-label>suprimer un utilisateur</ion-label>
+
+                    </ion-item>
+                    <ion-item>
+                      <ion-checkbox ngModel name="termination_des_taches" #termination_des_taches="ngModel" [ngModel]="false"></ion-checkbox>
+                      <ion-label>termination des taches</ion-label>
+
+                    </ion-item>
+                    <ion-item>
+                      <ion-checkbox ngModel name="gestion_des_utilisateur" #gestion_des_utilisateur="ngModel" [ngModel]="false"></ion-checkbox>
+                      <ion-label>gestion_des_utilisateur</ion-label>
+
+                    </ion-item>
+                    <ion-item>
+                      <ion-checkbox ngModel name="suprimer_des_taches" #suprimer_des_taches="ngModel"  [ngModel]="false"></ion-checkbox>
+                      <ion-label>suprimer des taches</ion-label>
+
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+             
+              </ion-col>
+
+                <!-- sujet col  -->
+
+            </ion-row>
+            <ion-row class="ion-text-center">
+              <ion-col>
+                
+                <ion-button color="danger" fill="outline" type="submit" [disabled]="!f.valid">Ajouter un utilisateur</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
