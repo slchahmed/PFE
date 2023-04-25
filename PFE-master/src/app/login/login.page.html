@@ -1,0 +1,38 @@
+
+
+<ion-content color="moud" >
+  <div class="login">
+    <ion-grid color="primary">
+      <ion-card class="card">
+        <ion-card-header class="ion-text-center">
+          <ion-card-title class="title">  <img src="https://www.mediafire.com/convkey/0c80/mwvqjk5cql8u609zg.jpg" alt=""></ion-card-title>
+         
+          
+
+        
+        </ion-card-header>
+      <ion-card-content class="ion-text-center  ion-padding">
+          <form ngForm #f="ngForm" (ngSubmit)="login({email:f.value.email,password:f.value.pass})">
+            <ion-item >
+              <ion-icon name="mail-outline" color="primary"></ion-icon>
+              <ion-label position="">Email</ion-label>
+              <ion-input ngModel type="text" name="email" #email="ngModel" required pattern="[a-zA-Z0-9._%+-]+@gmail\.com" email [ngClass]="{'invalid-input': email.invalid && email.touched}"></ion-input>
+            </ion-item>
+            <ion-note slot="error" color="danger" *ngIf="email.touched && email.errors?.['required']">L'e-mail est requis</ion-note>
+            <ion-note slot="error" color="danger" *ngIf="email.touched && email.errors?.['email']">Format d'email invalide</ion-note>
+            <ion-item>
+              <ion-icon name="bag-outline" color="primary"></ion-icon>
+              <ion-label position="">mot de passe</ion-label>
+              <ion-input ngModel type="password" name="pass" #pass="ngModel" required minlength="8"></ion-input>
+            </ion-item>
+            <ion-note slot="error" color="danger" *ngIf="pass.touched &&pass.errors?.['required']">Mot de passe requis</ion-note>
+            <ion-note slot="error" color="danger" *ngIf="pass.touched && pass.errors?.['minlength']">Le mot de passe doit comporter au moins 8 caractères</ion-note>            <div class="button">
+              <ion-button type="submit" [disabled]="!f.valid">Connection</ion-button>
+            </div>
+            <ion-note style="color: blue;" [routerLink]="['./reset-pass']">mot de passe oublier ? </ion-note>
+          </form>
+        </ion-card-content>
+      </ion-card>
+  </ion-grid>
+</div>
+</ion-content>

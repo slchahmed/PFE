@@ -1,0 +1,194 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-back-button defaultHref="/dashboard" slot="start"></ion-back-button>
+    <ion-title>edit</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>new project</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <form ngForm #f="ngForm" (submit)="update_projet(f.value)">
+          <ion-grid>
+            <ion-row>
+              <ion-col style="height: auto;">
+
+                <!-- Titre -->
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label position="floating">Titre du projet</ion-label>
+                      <ion-input ngModel name="Titre" #Titre="ngModel" type="text" minlenght="5" required [value]="projet?.Titre"></ion-input>
+                    </ion-item>
+                    <ion-note color="danger" *ngIf="!Titre.valid&&Titre.touched">Titre et obligatoir</ion-note>
+                  </ion-col>
+                </ion-row>
+
+                <!-- date grid -->
+                
+                <ion-row>
+                  <ion-col>
+                    <!-- date_debut  -->
+                    <ion-item lines="none">
+                      <ion-datetime-button datetime="date1" presentation="date-time"></ion-datetime-button>
+                      <ion-modal [keepContentsMounted]="true">
+                        <ng-template>
+                          <ion-datetime [value]="date_debut"  [showDefaultButtons]="true" ngModel displayFormat="YYYY/MM/DD" name="date_debut" id="date1" presentation="date-time"></ion-datetime>
+                        </ng-template>
+                      </ion-modal>
+                    </ion-item>
+
+                  </ion-col>
+                  <!-- date_fin  -->
+                  <ion-col>
+                    <ion-item lines="none">
+              
+                      <ion-datetime-button slots="date-target" datetime="date2"  presentation="date-time"></ion-datetime-button>
+                      <ion-modal [keepContentsMounted]="true">
+                        <ng-template>
+                          <ion-datetime [value]="date_fin" [showDefaultButtons]="true" ngModel displayFormat="YYYY/MM/DD" name="date_fin" id="date2" presentation="date-time"></ion-datetime>
+                        </ng-template>
+                      </ion-modal>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+
+                <!-- equipe grid  -->
+                <div class="equipe">
+              
+                <ion-row>
+                  <ion-col>
+                        
+                         <ion-accordion-group expand="inset">
+                          <ion-accordion value="first">
+                            <ion-item slot="header" color="primary">
+                              <ion-label>Equipe du projet</ion-label>
+                            </ion-item>
+                            <div class="ion-padding" slot="content">
+                              <ion-list>
+                                <ion-item *ngFor="let member of equipe"><ion-icon name="people-outline"></ion-icon>{{member}}</ion-item>
+                               </ion-list>
+                               <ion-item>
+                                <ion-label position="floating"></ion-label>
+                                <ion-input [(ngModel)]="newEquipeMember" name="Equipe"  type="text" minlenght="5"></ion-input>
+                              </ion-item>
+                              <ion-button (click)="addequipeMember()">add member</ion-button>
+                            </div>
+                          </ion-accordion>
+                          </ion-accordion-group>  
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                  </ion-col>
+                </ion-row>
+              </div>
+              </ion-col>
+
+                <!-- sujet col  -->
+              <ion-col>
+                <ion-row>
+                  <ion-col>
+                    <ion-accordion-group expand="inset">
+                      <ion-accordion value="first">
+                        <ion-item slot="header" color="primary">
+                          <ion-label>Sujet du pojet</ion-label>
+                        </ion-item>
+                        <div class="ion-padding" slot="content">
+                          <ion-textarea minlength="15" ngModel name="sujet" #sujet="ngModel" required  [value]="projet?.sujet" [clearOnEdit]="true" rows="10" spellcheck="true">
+                            <ion-note  color="danger" *ngIf="sujet.touched&&!sujet.valid">Les information donnes ici et tres important pour lequipe et pour le chefe lui meme</ion-note>
+                          </ion-textarea>
+                        </div>
+                      </ion-accordion>
+                      </ion-accordion-group>  
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+
+
+
+                    <ion-accordion-group expand="inset">
+                      <ion-accordion value="first">
+                        <ion-item slot="header" color="primary">
+                          <ion-label>Tache</ion-label>
+                        </ion-item>
+                        <div slot="content">
+                         
+                          
+                              <ion-accordion-group expand="inset" *ngFor="let newtache of taches">
+                                <ion-accordion value="first">
+                                  <ion-item slot="header" color="light">
+                                    <ion-icon name="checkmark-done-circle-outline"></ion-icon>
+                                    <ion-label class="tache-title">{{newtache.title}}</ion-label>
+                                    <ion-icon slot="end" color="danger" name="close-circle-outline" (click)="showAlert(newtache)"></ion-icon>
+                                  </ion-item>
+                                  <div class="tache-content ion-padding" slot="content">
+                                    {{newtache.title}}
+                                  </div>
+                              </ion-accordion>
+                              </ion-accordion-group>     
+
+
+                       <div class="ion-text-center">
+                          <ion-item fill="outline" style="margin:0 10px 0 10px">
+                            <ion-label position="floating">ajouter niveau tache</ion-label>
+                            <ion-input [clearInput]="true" [(ngModel)]="title" name="Tache"  type="text" minlenght="100"></ion-input>                            
+                          </ion-item>
+                          <ion-button (click)="addtache()">ajouter tache</ion-button>
+
+                        </div> 
+                        </div>
+                      </ion-accordion>
+                      </ion-accordion-group>  
+
+
+
+
+
+
+
+
+                  
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                
+                  </ion-col>
+                </ion-row>
+
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-text-center">
+              <ion-col>
+               <ion-button color="danger" fill="outline" type="submit" [disabled]="!f.valid">mettre a jour projet</ion-button>
+              </ion-col>
+             </ion-row>
+          </ion-grid>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

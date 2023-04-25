@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard" slot="start"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{projet?.Titre}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+       
+        <ion-item> <h3>Titre  :</h3> <h5 class="margin-left">{{projet?.Titre}}</h5></ion-item>
+       
+        <ion-item>  <h3>Chef de projet  :</h3> <h5 class="margin-left">{{chef}}</h5></ion-item>
+
+
+
+
+       
+
+
+
+
+  
+        <ion-item>    <h3>status  :</h3> <span class="margin-left" [style.color]="projet?.badgeColor">{{projet?.status}}</span></ion-item>
+
+
+        
+        <ion-item>
+          <h3><ion-icon name="calendar-number-outline"></ion-icon></h3> <h3 class="margin-left">Date-debut    :  </h3 > <span class="margin-left"> {{projet?.date_debut}}</span></ion-item>
+       
+        <ion-item>
+          <h3><ion-icon name="calendar-number-outline"></ion-icon></h3> <h3 class="margin-left">Date-fin   :  </h3><span class="margin-left"> {{projet?.date_debut}}</span> </ion-item>
+      </ion-col>
+      <ion-col>
+        
+     
+        
+        
+        <ion-accordion-group expand="inset">
+          <ion-accordion value="first">
+            <ion-item slot="header" color="primary">
+              <ion-label><h2>Sujet du projet</h2></ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">
+              <ion-item class="sujet" lines="none">{{projet?.sujet}}</ion-item>        
+            </div>
+
+          </ion-accordion>
+        </ion-accordion-group>
+        <ion-accordion-group expand="inset">
+          <ion-accordion value="first">
+            <ion-item slot="header" color="primary">
+              <ion-label>Equipe de projet</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">
+              <ion-item  lines="none" *ngFor="let member of projet?.equipe"><ion-icon name="people-outline"></ion-icon>{{member}}</ion-item>
+            </div>
+
+          </ion-accordion>
+        </ion-accordion-group>
+        <ion-accordion-group expand="inset">
+          <ion-accordion value="first">
+            <ion-item slot="header" color="primary">
+              <ion-label>Taches</ion-label>
+            </ion-item>
+            <div slot="content">
+             
+              <ion-accordion-group expand="inset" *ngFor="let tache of projet?.taches;let i = index;"> 
+                <ion-accordion value="first">
+                <ion-item slot="header" color="light">
+                   <ion-checkbox [(ngModel)]="tache.isdone"   slot="start" (click)="showAlert(tache,i)"  [disabled]="!user.authorisations.termination_des_taches"></ion-checkbox>           
+                   <ion-label class="tache-title">
+                    
+                    <ion-label *ngIf="!tache.isdone">{{tache.title}}</ion-label>
+                    <del *ngIf="tache.isdone"><ion-label >{{tache.title}}</ion-label></del>
+                  
+                  </ion-label>
+                </ion-item>
+               <div class="tache-content ion-padding" slot="content">
+                  {{tache.title}}
+               </div>
+                </ion-accordion>
+                </ion-accordion-group> 
+                    </div>
+                    
+                  </ion-accordion>
+                  </ion-accordion-group>  
+
+               
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+  
+  </ion-list>
+</ion-content>
