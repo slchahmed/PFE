@@ -27,6 +27,8 @@ export class EditPage implements OnInit {
     })
     this.service.getprojetById(this.id).subscribe(res=>{
       this.taches = []
+      console.log(res['date_debut'])
+      console.log(res['date_fin'])
       this.date_debut=this.formatdate(res['date_debut']).split('.')[0]; 
       this.date_fin=this.formatdate(res['date_fin']).split('.')[0];
     
