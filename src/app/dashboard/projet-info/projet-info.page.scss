@@ -1,4 +1,21 @@
 .sujet{
-    border: 2px solid gray;
-    border-radius: 4px;
-}
+    font-size: large;
+ }
+ 
+ ion-label{
+     font-size: large;
+ }
+ 
+ .margin-left{
+     margin-left: 20px;
+ }
+ 
+ .tache-title{
+     width: 10px;
+     overflow: quote($string: "....");
+ }
+ 
+ .tache-content{
+     // white-space: initial;
+     overflow-wrap: break-word;
+ }

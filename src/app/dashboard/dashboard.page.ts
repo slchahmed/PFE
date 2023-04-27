@@ -67,10 +67,14 @@ export class DashboardPage implements OnInit {
      this.passe_delai = 0
       for(let projet of projets){
         
-       
+      
+        console.log(projet.date_fin)
+
          this.T=this.T+1
          projet.date_debut= new Date(projet.date_debut).getTime();
          projet.date_fin = new Date(projet.date_fin).getTime();
+        console.log(projet.date_fin)
+
          const currentDate = new Date();
          const totalTime = projet.date_fin - projet.date_debut;
          const elapsed = currentDate.getTime() - projet.date_debut;
@@ -82,6 +86,7 @@ export class DashboardPage implements OnInit {
          const date_f = new Date(projet.date_fin);
          const dateString_f = date_f.toLocaleString()
          projet.date_fin = dateString_f
+         console.log(projet.date_fin)
  
          const progress = elapsed / totalTime;
  
@@ -92,7 +97,7 @@ export class DashboardPage implements OnInit {
           
          }
           if (progress >= 1 && projet.status !== 'Completed') {
-           projet.status = 'behind schedule';
+           projet.status = 'Behind schedule';
            projet.badgeColor = '#ff0404';
            this.P=this.P+1
         
@@ -118,22 +123,24 @@ export class DashboardPage implements OnInit {
             
             this.date_fin=this.formatdate(projet.date_fin).split('T')[0];
             this.date_fins_temp.push(this.date_fin)
+            console.log(projet.date_fin)
             
  
          }
-         if (projet.status == 'behind schedule'){
+         if (projet.status == 'Behind schedule'){
           this.passe_delai=this.passe_delai + 1
           
          }
+         projet.date_debut = projet.date_debut.split(',')[0]; 
+         projet.date_fin = projet.date_fin.split(',')[0]; 
+         console.log(projet.date_fin)
      
-        projet.date_debut = projet.date_debut.split(',')[0]; 
-        projet.date_fin = projet.date_fin.split(',')[0]; 
-     
-         
+        
       }
       this.date_fins = this.date_fins_temp
       // console.log(this.date_fins)
       this.projets=projets;
+    
       this.search_result=this.projets.slice()
     
     })
@@ -207,7 +214,5 @@ updateuser(user:user){
   const userref = doc(this.firestore,`users/${user?.id}`);
   return updateDoc(userref,{ide:user?.ide,nom:user?.nom,phone_number:user?.phone_number,authorisations:{ajouter_un_projet:user?.authorisations.ajouter_un_projet,modidier_un_projet:user?.authorisations.modidier_un_projet, suprimer_un_projet:user?.authorisations.suprimer_un_projet, ajouter_un_utilisateur:user?.authorisations.ajouter_un_utilisateur, modifier_un_utilisateur:user?.authorisations.modifier_un_utilisateur, suprimer_un_utilisateur:user?.authorisations.suprimer_un_utilisateur, termination_des_taches:user?.authorisations.termination_des_taches, suprimer_des_taches:user?.authorisations.suprimer_des_taches}})
 }
-lunch(){
-  this.updateuser(this.user1!)
-}
+
 }
