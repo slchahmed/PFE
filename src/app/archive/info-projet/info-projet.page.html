@@ -100,9 +100,7 @@
                
                 <ion-accordion-group expand="inset" *ngFor="let tache of projet?.taches;let i = index;"> 
                   <ion-accordion value="first">
-                  <ion-item slot="header" color="light">
-                     <ion-checkbox [(ngModel)]="tache.isdone"   slot="start" (click)="showAlert(tache,i)"  [disabled]="!user.authorisations.termination_des_taches"></ion-checkbox>           
-                     <ion-label class="tache-title">
+                  <ion-item slot="header" color="light">                     <ion-label class="tache-title">
                       
                       <ion-label *ngIf="!tache.isdone">{{tache.title}}</ion-label>
                       <del *ngIf="tache.isdone"><ion-label >{{tache.title}}</ion-label></del>

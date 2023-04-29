@@ -18,6 +18,7 @@ export interface projet{
   Tache?:string;
   tache:{title?:string,isdone?:boolean};
   taches?:{isdone?:boolean,title?:string}[];
+  le_temps_a_pris_pour_terminer?:any;
 }
 @Injectable({
   providedIn: 'root'
@@ -36,8 +37,16 @@ export class ProjetService {
     const projetsref = collection(this.firestore,'projets');
     return addDoc(projetsref,projet);
   }
+  addtoarchive(projet:projet){
+    const projetsref = collection(this.firestore,'projets-archive');
+    return addDoc(projetsref,projet);
+  }
   deleteprojet(projet:projet){
     const projetsref = doc(this.firestore,`projets/${projet.id}`);
+    return deleteDoc(projetsref);
+  }
+  deletearchiveprojet(projet:projet){
+    const projetsref = doc(this.firestore,`projets-archive/${projet.id}`);
     return deleteDoc(projetsref);
   }
 
@@ -47,6 +56,10 @@ export class ProjetService {
   }
   getprojetById(id:string){
     const projetref = doc(this.firestore,`projets/${id}`);
+    return docData(projetref,{idField:'id'})
+  }
+  getprojetarchiveById(id:string){
+    const projetref = doc(this.firestore,`projets-archive/${id}`);
     return docData(projetref,{idField:'id'})
   }
 }

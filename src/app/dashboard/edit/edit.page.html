@@ -66,7 +66,7 @@
                          <ion-accordion-group expand="inset">
                           <ion-accordion value="first">
                             <ion-item slot="header" color="primary">
-                              <ion-label>Equipe du projet</ion-label>
+                              <ion-label><ion-icon slot="start" style="margin-right:20px" name="people-outline"></ion-icon>Equipe du projet</ion-label>
                             </ion-item>
                             <div class="ion-padding" slot="content">
                               <ion-list>
@@ -76,7 +76,7 @@
                                 <ion-label position="floating"></ion-label>
                                 <ion-input [(ngModel)]="newEquipeMember" name="Equipe"  type="text" minlenght="5"></ion-input>
                               </ion-item>
-                              <ion-button (click)="addequipeMember()">add member</ion-button>
+                              <ion-button (click)="addequipeMember()"><ion-icon slot="start" style="margin-right: 20px;" name="arrow-up-outline"></ion-icon>add member</ion-button>
                             </div>
                           </ion-accordion>
                           </ion-accordion-group>  
@@ -96,7 +96,7 @@
                     <ion-accordion-group expand="inset">
                       <ion-accordion value="first">
                         <ion-item slot="header" color="primary">
-                          <ion-label>Sujet du pojet</ion-label>
+                          <ion-label><ion-icon slot="start" style="margin-right:20px" name="clipboard-outline"></ion-icon>Sujet du pojet</ion-label>
                         </ion-item>
                         <div class="ion-padding" slot="content">
                           <ion-textarea minlength="15" ngModel name="sujet" #sujet="ngModel" required  [value]="projet?.sujet" [clearOnEdit]="true" rows="10" spellcheck="true">
@@ -115,7 +115,7 @@
                     <ion-accordion-group expand="inset">
                       <ion-accordion value="first">
                         <ion-item slot="header" color="primary">
-                          <ion-label>Tache</ion-label>
+                          <ion-label><ion-icon slot="start" style="margin-right:20px" name="checkbox-outline"></ion-icon>Tache</ion-label>
                         </ion-item>
                         <div slot="content">
                          
@@ -139,7 +139,7 @@
                             <ion-label position="floating">ajouter niveau tache</ion-label>
                             <ion-input [clearInput]="true" [(ngModel)]="title" name="Tache"  type="text" minlenght="100"></ion-input>                            
                           </ion-item>
-                          <ion-button (click)="addtache()">ajouter tache</ion-button>
+                          <ion-button (click)="addtache()"> <ion-icon slot="start" style="margin-right: 20px;" name="arrow-up-outline"></ion-icon>ajouter tache</ion-button>
 
                         </div> 
                         </div>

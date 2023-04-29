@@ -118,7 +118,7 @@ export class DashboardPage implements OnInit {
             
  
          }
-          if(projet.status !== 'Completed'){
+          if(projet.status !== 'Completed' && progress > 0.8 ){
            
             
             this.date_fin=this.formatdate(projet.date_fin).split('T')[0];
@@ -179,9 +179,44 @@ export class DashboardPage implements OnInit {
   
  }
   
- cheked(projet:projet){
-   projet.status='Completed'
-   this.serviceprojects.updateprojet(projet)
+ async cheked(projet:projet){
+  for(let tache of projet.taches!){
+      if(!tache.isdone){
+        const alert = await this.alertcontroller.create({
+          id: '1',
+          header:'improtant ! ',
+          subHeader: 'certaines des tâches de ce projet ne sont pas encore terminées êtes-vous sûr de vouloir marquer comme terminé',
+          buttons:[{
+            text:'ok',
+            role:'confirm',
+            handler:()=>{
+              projet.status='Completed'
+              this.serviceprojects.updateprojet(projet)
+              this.addtoarchive(projet)
+            } 
+          },
+          {
+            text:'annuler',
+            role:'cancel',
+          }
+        ],
+        })
+       
+        await alert.present();
+      }else{
+        projet.status='Completed'
+        this.serviceprojects.updateprojet(projet)
+        this.addtoarchive(projet)
+      }
+  }
+ }
+ addtoarchive(projet:projet){
+    const current = new Date().getTime()
+    const d_d = new Date(projet.date_debut).getTime()
+    const diff = (current - d_d) / (24 * 60 * 60 * 1000) 
+    projet.le_temps_a_pris_pour_terminer = diff.toString() 
+    projet.status='Completed'
+    this.serviceprojects.addtoarchive(projet)
  }
 
  handleChange(value:string){
