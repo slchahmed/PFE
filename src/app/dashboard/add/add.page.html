@@ -78,10 +78,10 @@
                 <ion-row>
                   <ion-col>
                     <ion-item>
-                      <ion-label position="floating">Equipe du projet</ion-label>
+                      <ion-label position="floating"><ion-icon slot="start" style="margin-right: 20px;" name="person-add-outline"></ion-icon>Equipe du projet</ion-label>
                       <ion-input [(ngModel)]="newEquipeMember" name="Equipe"  type="text" minlenght="5"></ion-input>
                     </ion-item>
-                    <ion-button (click)="addequipeMember()">add member</ion-button>
+                    <ion-button (click)="addequipeMember()"><ion-icon slot="start" style="margin-right: 20px;" name="arrow-up-outline"></ion-icon>add member</ion-button>
                   </ion-col>
                 </ion-row>
                 <ion-row>
@@ -91,7 +91,7 @@
                       <ion-label position="floating">Tache</ion-label>
                       <ion-input [(ngModel)]="title" name="Tache"  type="text" minlenght="5"></ion-input>
                     </ion-item>
-                    <ion-button (click)="addtache()">ajouter tache</ion-button>
+                    <ion-button (click)="addtache()"><ion-icon slot="start" style="margin-right: 20px;" name="arrow-up-outline"></ion-icon>ajouter tache</ion-button>
                   </ion-col>
                 </ion-row>
               </ion-col>

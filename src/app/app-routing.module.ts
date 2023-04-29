@@ -56,6 +56,10 @@ const routes: Routes = [
     loadChildren: () => import('./user-profile/user-profile.module').then( m => m.UserProfilePageModule),
     ...canActivate(redirectToLogin)
   },
+  {
+    path: 'archive',
+    loadChildren: () => import('./archive/archive.module').then( m => m.ArchivePageModule)
+  },
 
 
 

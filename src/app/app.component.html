@@ -28,13 +28,16 @@
         <ion-menu-toggle>
         <ion-item style="font-size: 21px;" [routerLink]="['dashboard']" ><ion-icon slot="end" name="clipboard" ></ion-icon>Tableau de bord</ion-item>
       </ion-menu-toggle>
-        <ion-menu-toggle>
-        <ion-item style="font-size: 21px;" [routerLink]="['stats']" ><ion-icon slot="end" name="stats-chart-outline"></ion-icon>Statistiques</ion-item>
-      </ion-menu-toggle>
+      <ion-menu-toggle >
+      <ion-item style="font-size: 21px;" [routerLink]="['lists-des-utilisateurs']" ><ion-icon slot="end" name="accessibility-outline"></ion-icon>Gestion des utilisateurs</ion-item>
+    </ion-menu-toggle> 
+      <ion-menu-toggle>
+      <ion-item style="font-size: 21px;" [routerLink]="['stats']" ><ion-icon slot="end" name="stats-chart-outline"></ion-icon>Statistiques</ion-item>
+    </ion-menu-toggle>
+      <ion-menu-toggle>
+      <ion-item style="font-size: 21px;" [routerLink]="['archive']" ><ion-icon slot="end" name="archive-outline"></ion-icon>Archive</ion-item>
+    </ion-menu-toggle>
       
-        <ion-menu-toggle >
-        <ion-item style="font-size: 21px;" [routerLink]="['lists-des-utilisateurs']" ><ion-icon slot="end" name="accessibility-outline"></ion-icon>Gestion des utilisateurs</ion-item>
-      </ion-menu-toggle> 
       <ion-menu-toggle>
         <ion-item style="font-size: 21px;" (click)="logout()" ><ion-icon slot="end" name="log-out"></ion-icon>Déconnecter</ion-item>
       </ion-menu-toggle>
