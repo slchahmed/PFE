@@ -32,7 +32,8 @@ export class DashboardPage implements OnInit {
    T!:number
    G!:number
    F!:number   
-   P!:number   
+   P!:number
+   N!:number   
    passe_delai:number = 0
    date_fin!:string
    date_fins!:string[]
@@ -64,6 +65,7 @@ export class DashboardPage implements OnInit {
      this.G=0
      this.F=0
      this.P=0
+     this.N=0
      this.passe_delai = 0
       for(let projet of projets){
         
@@ -92,7 +94,7 @@ export class DashboardPage implements OnInit {
  
        
          if ( progress<0 && projet.status == 'Not started') {
-           
+           this.N = this.N+1
            projet.badgeColor = 'primary';
           
          }
@@ -178,6 +180,29 @@ export class DashboardPage implements OnInit {
     await alert.present();
   
  }
+ async archive(projet:projet){
+  const alert = await this.alertcontroller.create({
+    id: '1',
+    header:'improtant ! ',
+    subHeader: "ce projet sera définitivement supprimé de la liste ici mais vous pouvez toujours le trouver dans la liste des archives, êtes-vous d'accord avec ça",
+    buttons:[{
+      text:'ok',
+      role:'confirm',
+      handler:()=>{
+        this.addtoarchive(projet)
+        this.serviceprojects.deleteprojet(projet)
+      } 
+    },
+    {
+      text:'annuler',
+      role:'cancel',
+    }
+  ],
+  })
+ 
+  await alert.present();
+  
+ }
   
  async cheked(projet:projet){
   for(let tache of projet.taches!){
@@ -192,7 +217,7 @@ export class DashboardPage implements OnInit {
             handler:()=>{
               projet.status='Completed'
               this.serviceprojects.updateprojet(projet)
-              this.addtoarchive(projet)
+              
             } 
           },
           {
