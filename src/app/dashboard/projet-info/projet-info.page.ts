@@ -37,7 +37,7 @@ export class ProjetInfoPage implements OnInit {
        if ( projet['status'] == 'Behind schedule') {
         this.subbadgeColor = '#FFC1C9'
         projet['badgeColor'] = '#ff0404';
-        this.status = 'en cours'
+        this.status = 'en retard'
      
         
 
