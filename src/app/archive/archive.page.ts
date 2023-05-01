@@ -30,7 +30,7 @@ export class ArchivePage implements OnInit {
           const wholeMinutes = Math.floor(remainingMinutes);
           const remainingSeconds = (remainingMinutes - wholeMinutes) * 60;
           const wholeSeconds = Math.floor(remainingSeconds);
-          projet.le_temps_a_pris_pour_terminer = wholeDays.toString()+'J'+wholeHours.toString()+'H'+wholeMinutes.toString()+'m'
+          projet.le_temps_a_pris_pour_terminer = wholeDays.toString()+' '+'J'+' '+wholeHours.toString()+' '+'H'+' '+wholeMinutes.toString()+' '+'m'
           if (projet.status == 'Not started') {
             
             projet.badgeColor = 'primary';
