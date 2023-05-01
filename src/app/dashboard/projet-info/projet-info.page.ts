@@ -20,7 +20,7 @@ export class ProjetInfoPage implements OnInit {
   user!:user
   chef!:any
   subbadgeColor!:string
-
+  status!:string
   constructor(private auth:Auth,private active_router:ActivatedRoute,private service:ProjetService,private alertcontroller:AlertController,private firestore:Firestore) { }
 
   ngOnInit() {
@@ -31,11 +31,13 @@ export class ProjetInfoPage implements OnInit {
    
       if (projet['status'] == 'Not started') {
         projet['badgeColor'] = 'blue';
+        this.status = 'pas commencé'
        
       }
        if ( projet['status'] == 'Behind schedule') {
         this.subbadgeColor = '#FFC1C9'
         projet['badgeColor'] = '#ff0404';
+        this.status = 'en cours'
      
         
 
@@ -43,10 +45,14 @@ export class ProjetInfoPage implements OnInit {
       if (projet['status'] =='In progress') {
         projet['badgeColor'] = '#FDA349';
         this.subbadgeColor = '#ffe0c0'
+        this.status = 'en cours'
+
       } 
        if(projet['status'] == 'Completed'){
         projet['badgeColor'] = '#3BAE74';         
         this.subbadgeColor = '#d5f3db'
+        this.status = 'Complété'
+
       }
       this.getuser().subscribe(user=>{
         this.user = user[0] as user
